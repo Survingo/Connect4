@@ -6,10 +6,12 @@ import java.net.URL;
 import javax.swing.ImageIcon;
 
 import survingo.connect4.gui.VG_GUI_LocalFriend;
+import survingo.connect4.lang.Lang;
 
 public class VG_Main {
 	
 	public static ImageIcon	redIcon, yellowIcon;
+	public static final String VER = "0.1.1";
 	
 	// function to scale images
 	public static ImageIcon setImage ( String path, int width, int height ) {
@@ -29,6 +31,7 @@ public class VG_Main {
 		// Initiate images
 		redIcon = setImage ( "utils/VG_Red.png", 90, 90 );
 		yellowIcon = setImage ( "utils/VG_Yellow.png", 90, 90 );
+		Lang.init();
 		
 		new VG_GUI_LocalFriend();
 	}
