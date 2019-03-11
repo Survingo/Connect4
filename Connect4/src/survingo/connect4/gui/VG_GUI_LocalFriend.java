@@ -16,31 +16,30 @@ import survingo.connect4.VG_EventHandler;
 import survingo.connect4.VG_Main;
 import survingo.connect4.utils.VG_Button;
 
-public class VG_GUI_LocalFriend extends JFrame implements ActionListener
-{
-	public static int currentTurn = 1; // Wer ist aktuell am Zug? 1 - Rot / 2 - Gelb
-	JButton restartButton = new JButton( "Neustarten" ); // Neustart-Knopf initialisieren
-	public static JLabel currentPlayer = new JLabel( "Spieler 1 ist am Zug." );
-	public static int redScore = 0, yellowScore = 0; // Score-Zähler
-	public static JLabel redScoreLabel = new JLabel ( "0" ), yellowScoreLabel = new JLabel ( "0" ); // Label für Score-Zähler
-	VG_Button [] [] sf = new VG_Button [6] [7]; // Spielfelder erstellen mithilfe multidimensionalen Arrays = 6 Zeilen / 7 Spalten
+public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 	
-	public VG_GUI_LocalFriend ()
-	{
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Bei schließen des Fensters Programm komplett beenden
-		setTitle( "Vier Gewinnt - Lokales Spiel" ); // Titel des Fensters festlegen
-		getContentPane().setPreferredSize(new Dimension(1100, 650)); // Größe des Fensters in Pixeln festlegen
-		getContentPane().setLayout(null); // kein Layout-Manager verwenden anstatt von FlowLayout
+	public static int currentTurn = 1; // 1 - red, 2 - yellow
+	public static int redScore = 0, yellowScore = 0; // score counter
+	JButton restartButton = new JButton( "Neustarten" );
+	public static JLabel currentPlayer = new JLabel( "Spieler 1 ist am Zug." );
+	public static JLabel redScoreLabel = new JLabel ( "0" ), yellowScoreLabel = new JLabel ( "0" );
+	VG_Button [] [] sf = new VG_Button [6] [7]; // create game field using multidimensional array = 6 rows (y-axis) / 7 columns (x-axis)
+	
+	public VG_GUI_LocalFriend () {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle( "Vier Gewinnt - Lokales Spiel" );
+		getContentPane().setPreferredSize(new Dimension(1100, 650));
+		getContentPane().setLayout(null);
 		
-		JPanel spielfeld = new JPanel(); // eigenes JPanel für Spielfeld
-		spielfeld.setSize(700,600);
-		spielfeld.setLayout( new GridLayout ( 6, 7 ) ); // Layout-Manager verwenden, um Größe / Position Knöpfe automatisch auszuwählen
+		JPanel gamefield = new JPanel(); // seperate JPanel for game field
+		gamefield.setSize(700,600);
+		gamefield.setLayout( new GridLayout ( 6, 7 ) ); // layout manager sets size and position of buttons automatically
 		
-		JLabel scoreboardLabel = new JLabel("Scoreboard"); // neues JLabel
-		scoreboardLabel.setFont(new Font("Liberation Sans", Font.PLAIN, 25)); //Text formatieren
-		scoreboardLabel.setSize ( scoreboardLabel.getPreferredSize().width, scoreboardLabel.getPreferredSize().height ); //Größe nach Text anpassen
-		scoreboardLabel.setLocation ( 850, 50 ); // Ort festlegen auf JFrame
-		getContentPane().add(scoreboardLabel); // Zum Haupt-JPanel hinzufügen
+		JLabel scoreboardLabel = new JLabel("Scoreboard");
+		scoreboardLabel.setFont(new Font("Liberation Sans", Font.PLAIN, 25));
+		scoreboardLabel.setSize ( scoreboardLabel.getPreferredSize().width, scoreboardLabel.getPreferredSize().height );
+		scoreboardLabel.setLocation ( 850, 50 );
+		getContentPane().add(scoreboardLabel);
 		
 		JLabel redScoreboard = new JLabel("Punktestand von Spieler 1 (Rot) - ");
 		redScoreboard.setFont(new Font("Liberation Sans", Font.PLAIN, 13));
@@ -74,62 +73,46 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener
 		restartButton.addActionListener( this );
 		getContentPane().add(restartButton);
 		
-		try
-		{
+		try {
 			setIconImage ( VG_Main.redIcon.getImage() ); // Fensterbild festlegen
-		}
-		catch ( Exception e )
-		{
+		} catch ( Exception e ) {
 			e.printStackTrace();
 		}
 		
-		int z = sf.length; // Anzahl Zeilen = Länge des Arrays
-		int zCounter; // Zähler für Schleife...
-		int s = 7; // Anzahl Spalten
+		int z = sf.length; // number of rows = length of array
+		int zCounter;
+		int s = 7; // number of columns
 		int sCounter;
 		
-		for ( zCounter = 0; zCounter < z; zCounter++ ) // Schleife für Zeilen
-		{
-			for ( sCounter = 0; sCounter < s; sCounter++ ) // Schleife für Spalten
-			{
-				sf [ zCounter ] [ sCounter ] = new VG_Button ( null, zCounter+1, sCounter+1 ); // Alle 42 Spielfelder initialisieren
-				VG_GUI.initButton( spielfeld, this, sf [ zCounter ] [ sCounter ], sCounter+1, zCounter+1); // Knöpfe einstellen mithilfe der Methode
+		for ( zCounter = 0; zCounter < z; zCounter++ ) { // loop for rows
+			for ( sCounter = 0; sCounter < s; sCounter++ ) { // loop for columns
+				sf [ zCounter ] [ sCounter ] = new VG_Button ( null, zCounter+1, sCounter+1 ); // init all 42 game field buttons
+				VG_GUI.initButton( gamefield, this, sf [ zCounter ] [ sCounter ], sCounter+1, zCounter+1); // Knöpfe einstellen mithilfe der Methode
 			}
 		}
 		
-		getContentPane().add(spielfeld); //Spielfeld hinzufügen
-		spielfeld.setLocation(25, 25); //Kleinen Rand
+		getContentPane().add(gamefield);
+		gamefield.setLocation(25, 25); // add small edge
 		
-		setResizable(false); // Fenstergröße fixieren - nicht mehr änderbar vom Benutzer
-		pack(); // Fenstergröße und Größe von Komponenten darin optimieren
-		setLocationRelativeTo(null); // Fenster zentral auf den Bildschirm platzieren
-		setVisible(true); // Fenster sichtbar machen
-		
+		setResizable(false);
+		pack();
+		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 	
-	// Knopf gedrückt -> entscheidet, was pasiert
-	public void actionPerformed ( ActionEvent e )
-	{
-		//Falls Neustart-Knopf gedrückt
-		if (e.getSource() == restartButton)
-		{
-			VG_EventHandler.restart( sf ); // Neustart-Methode ausführen
-		}
-		else
-		{ // Falls nicht -> Spielfeld-Knopf
-			VG_GUI.setButton(sf, (VG_Button) e.getSource(), currentTurn); //Knopf festlegen mithilfe setButton-Methode -> von unten nach oben
-			VG_EventHandler.checkForWin( sf, currentTurn ); //prüfen, ob jemand gewonnen hat
+	public void actionPerformed ( ActionEvent e ) {
+		if (e.getSource() == restartButton) {
+			VG_EventHandler.restart( sf );
+		} else {
+			VG_GUI.setButton(sf, (VG_Button) e.getSource(), currentTurn); // set button using that function (drop from top to bottom)
+			VG_EventHandler.checkForWin( sf, currentTurn );
 			
-			// aktuellen Zug ändern
-			if ( currentTurn == 1 ) // Falls Rot
-			{
-				currentTurn = 2; // Gelb nun am Zug
-				currentPlayer.setText( "Spieler 2 ist am Zug." ); // Text vom Label aktualisieren
+			if ( currentTurn == 1 ) { // change current turn, if red
+				currentTurn = 2;
+				currentPlayer.setText( "Spieler 2 ist am Zug." ); // update JLabel text
 				currentPlayer.setForeground( Color.YELLOW );
-			}
-			else
-			{ // Falls Gelb
-				currentTurn = 1; // Rot nun am Zug
+			} else { // if yellow
+				currentTurn = 1;
 				currentPlayer.setText( "Spieler 1 ist am Zug." );
 				currentPlayer.setForeground( Color.RED );
 			}
