@@ -17,11 +17,11 @@ public class Lang {
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();
 		InputStream stream = loader.getResourceAsStream("/connect4.properties");
 		lang = prop.getProperty("lang"); // TO-DO: generate properties file
-		try {
+		/*try { TO-DO
 			stream.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 		
 		if (lang.equals("deu")) {
 			deu = German.getMap();
