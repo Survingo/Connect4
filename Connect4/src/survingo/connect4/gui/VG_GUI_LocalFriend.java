@@ -1,3 +1,16 @@
+/*
+.d8888. db    db d8888b. db    db d888888b d8b   db  d888b   .d88b.  
+88'  YP 88    88 88  `8D 88    88   `88'   888o  88 88' Y8b .8P  Y8. 
+`8bo.   88    88 88oobY' Y8    8P    88    88V8o 88 88      88    88 
+  `Y8b. 88    88 88`8b   `8b  d8'    88    88 V8o88 88  ooo 88    88 
+db   8D 88b  d88 88 `88.  `8bd8'    .88.   88  V888 88. ~8~ `8b  d8' 
+`8888Y' ~Y8888P' 88   YD    YP    Y888888P VP   V8P  Y888P   `Y88P'  
+
+(c) Survingo 2019
+This file is part of the Connect4 project which is released under GNU General Public License v3.0.
+See https://github.com/Survingo/Connect4/blob/master/LICENSE for full license details.
+*/
+
 package survingo.connect4.gui;
 
 import java.awt.Color;
@@ -14,20 +27,21 @@ import javax.swing.JPanel;
 
 import survingo.connect4.VG_EventHandler;
 import survingo.connect4.VG_Main;
+import survingo.connect4.lang.Lang;
 import survingo.connect4.utils.VG_Button;
 
 public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 	
 	public static int currentTurn = 1; // 1 - red, 2 - yellow
 	public static int redScore = 0, yellowScore = 0; // score counter
-	JButton restartButton = new JButton( "Neustarten" );
-	public static JLabel currentPlayer = new JLabel( "Spieler 1 ist am Zug." );
+	JButton restartButton = new JButton( Lang.get("RESTART_BUTTON") );
+	public static JLabel currentPlayer = new JLabel( Lang.get("SB_CURTURN_P1") );
 	public static JLabel redScoreLabel = new JLabel ( "0" ), yellowScoreLabel = new JLabel ( "0" );
 	VG_Button [] [] sf = new VG_Button [6] [7]; // create game field using multidimensional array = 6 rows (y-axis) / 7 columns (x-axis)
 	
 	public VG_GUI_LocalFriend () {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle( "Vier Gewinnt - Lokales Spiel" );
+		setTitle( Lang.get("TITLE_LOCALFRIEND") );
 		getContentPane().setPreferredSize(new Dimension(1100, 650));
 		getContentPane().setLayout(null);
 		
@@ -35,19 +49,19 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 		gamefield.setSize(700,600);
 		gamefield.setLayout( new GridLayout ( 6, 7 ) ); // layout manager sets size and position of buttons automatically
 		
-		JLabel scoreboardLabel = new JLabel("Scoreboard");
+		JLabel scoreboardLabel = new JLabel( Lang.get("SB_TITLE") );
 		scoreboardLabel.setFont(new Font("Liberation Sans", Font.PLAIN, 25));
 		scoreboardLabel.setSize ( scoreboardLabel.getPreferredSize().width, scoreboardLabel.getPreferredSize().height );
 		scoreboardLabel.setLocation ( 850, 50 );
 		getContentPane().add(scoreboardLabel);
 		
-		JLabel redScoreboard = new JLabel("Punktestand von Spieler 1 (Rot) - ");
+		JLabel redScoreboard = new JLabel( Lang.get("SB_SCORE_RED") );
 		redScoreboard.setFont(new Font("Liberation Sans", Font.PLAIN, 13));
 		redScoreboard.setLocation( 750, 100 );
 		redScoreboard.setSize ( redScoreboard.getPreferredSize().width, redScoreboard.getPreferredSize().height );
 		getContentPane().add(redScoreboard);
 		
-		JLabel yellowScoreboard = new JLabel("Punktestand von Spieler 2 (Gelb) - ");
+		JLabel yellowScoreboard = new JLabel( Lang.get("SB_SCORE_YELLOW") );
 		yellowScoreboard.setFont(new Font("Liberation Sans", Font.PLAIN, 13));
 		yellowScoreboard.setLocation( 750, 150 );
 		yellowScoreboard.setSize ( yellowScoreboard.getPreferredSize().width, yellowScoreboard.getPreferredSize().height );
@@ -109,11 +123,11 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 			
 			if ( currentTurn == 1 ) { // change current turn, if red
 				currentTurn = 2;
-				currentPlayer.setText( "Spieler 2 ist am Zug." ); // update JLabel text
+				currentPlayer.setText( Lang.get("SB_CURTURN_P2") ); // update JLabel text
 				currentPlayer.setForeground( Color.YELLOW );
 			} else { // if yellow
 				currentTurn = 1;
-				currentPlayer.setText( "Spieler 1 ist am Zug." );
+				currentPlayer.setText( Lang.get("SB_CURTURN_P1") );
 				currentPlayer.setForeground( Color.RED );
 			}
 		}
