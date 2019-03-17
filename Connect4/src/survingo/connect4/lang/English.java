@@ -20,7 +20,8 @@ public class English {
 	
 	public static Map<String, String> getMap () {
 		Map<String, String> map = new HashMap<String, String>();
-
+		
+		map.put("TITLE_MAIN", "Connect Four");
 		map.put("TITLE_LOCALFRIEND", "Connect Four - Local Game with a Friend");
 		map.put("RESTART_BUTTON", "Restart");
 		map.put("UPDATE_AVAILABLE", "A new update for the game is available! Click <a href=\"https://github.com/Survingo/Connect4/releases\"> here</a> to download it.");

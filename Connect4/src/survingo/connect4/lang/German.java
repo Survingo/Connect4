@@ -21,6 +21,7 @@ public class German {
 	public static Map<String, String> getMap () {
 		Map<String, String> map = new HashMap<String, String>();
 		
+		map.put("TITLE_MAIN", "Vier Gewinnt");
 		map.put("TITLE_LOCALFRIEND", "Vier Gewinnt - Lokales Spiel mit einem Freund");
 		map.put("RESTART_BUTTON", "Neustarten");
 		map.put("UPDATE_AVAILABLE", "Ein neues Update ist verfügbar! Klicke <a href=\"https://github.com/Survingo/Connect4/releases\"> hier</a>, um es herunterzuladen.");

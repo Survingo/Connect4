@@ -40,7 +40,7 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 	VG_Button [] [] sf = new VG_Button [6] [7]; // create game field using multidimensional array = 6 rows (y-axis) / 7 columns (x-axis)
 	
 	public VG_GUI_LocalFriend () {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle( Lang.get("TITLE_LOCALFRIEND") );
 		getContentPane().setPreferredSize(new Dimension(1100, 650));
 		getContentPane().setLayout(null);

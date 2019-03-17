@@ -13,6 +13,8 @@ See https://github.com/Survingo/Connect4/blob/master/LICENSE for full license de
 
 package survingo.connect4;
 
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,16 +24,20 @@ import java.net.URL;
 import java.util.Properties;
 
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import survingo.connect4.gui.VG_GUI_LocalFriend;
 import survingo.connect4.lang.Lang;
 import survingo.connect4.utils.Updater;
 
-public class VG_Main {
+public class VG_Main extends JFrame {
 	
 	public static ImageIcon	redIcon, yellowIcon;
-	public static final String VER = "0.1.1";
+	public static final String VER = "0.2.0";
+	static JFrame mainFrame, localFriendFrame;
 	
 	// function to scale images
 	public static ImageIcon setImage ( String path, int width, int height ) {
@@ -103,7 +109,40 @@ public class VG_Main {
 		redIcon = setImage ( "utils/VG_Red.png", 90, 90 );
 		yellowIcon = setImage ( "utils/VG_Yellow.png", 90, 90 );
 		
-		new VG_GUI_LocalFriend();
+		mainFrame = new VG_Main();
+	}
+	
+	public VG_Main () {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle( Lang.get("TITLE_MAIN") );
+		getContentPane().setPreferredSize(new Dimension(1100, 650));
+		getContentPane().setLayout(null);
+		
+		JLabel vg = new JLabel( Lang.get("TITLE_MAIN") );
+		vg.setFont(new Font("Liberation Sans", Font.PLAIN, 80));
+		vg.setSize ( vg.getPreferredSize().width, vg.getPreferredSize().height );
+		vg.setLocation ( 300, 100 );
+		getContentPane().add(vg);
+		
+		// TO-DO...
+		JComboBox<String> gameOptions = new JComboBox<String>();
+		gameOptions.addItem("Locale Player vs. Player");
+		gameOptions.addItem("Player vs. AI - Easy");
+		gameOptions.addItem("Player vs. AI - Hard");
+		gameOptions.addItem("Online Player vs. Player");
+		gameOptions.setSelectedIndex(0);
+		getContentPane().add(gameOptions);
+		
+		JLabel versionLabel = new JLabel( "v" + VER );
+		versionLabel.setFont(new Font("Liberation Sans", Font.PLAIN, 25));
+		versionLabel.setSize ( versionLabel.getPreferredSize().width, versionLabel.getPreferredSize().height );
+		versionLabel.setLocation ( 1020, 620 );
+		getContentPane().add(versionLabel);
+		
+		setResizable(false);
+		pack();
+		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 	
 }
