@@ -23,6 +23,8 @@ public class German {
 		
 		map.put("TITLE_LOCALFRIEND", "Vier Gewinnt - Lokales Spiel mit einem Freund");
 		map.put("RESTART_BUTTON", "Neustarten");
+		map.put("UPDATE_AVAILABLE", "Ein neues Update ist verfügbar! Klicke <a href=\"https://github.com/Survingo/Connect4/releases\"> hier</a>, um es herunterzuladen.");
+		map.put("PROPERTIES_NOT_UP_TO_DATE", "Die Version der Eigenschaftendatei ist nicht mit der Version des Programmes kompatibel. Ein neue Datei wird nun generiert...");
 		
 		// Scoreboard
 		map.put("SB_TITLE", "Scoreboard");

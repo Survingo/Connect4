@@ -23,6 +23,8 @@ public class English {
 
 		map.put("TITLE_LOCALFRIEND", "Connect Four - Local Game with a Friend");
 		map.put("RESTART_BUTTON", "Restart");
+		map.put("UPDATE_AVAILABLE", "A new update for the game is available! Click <a href=\"https://github.com/Survingo/Connect4/releases\"> here</a> to download it.");
+		map.put("PROPERTIES_NOT_UP_TO_DATE", "The version of the properties file is not compatible with the program. Creating a new file now...");
 		
 		// Scoreboard
 		map.put("SB_TITLE", "Scoreboard");

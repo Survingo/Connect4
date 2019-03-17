@@ -13,6 +13,64 @@ See https://github.com/Survingo/Connect4/blob/master/LICENSE for full license de
 
 package survingo.connect4.utils;
 
+import java.awt.Desktop;
+import java.awt.Font;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Scanner;
+
+import javax.swing.JEditorPane;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
+
+import survingo.connect4.VG_Main;
+import survingo.connect4.lang.Lang;
+
 public class Updater {
+	
+	public static void checkForUpdate () {
+		String version = null;
+		try { // get newest version code of game
+			URL url = new URL("https://raw.githubusercontent.com/Survingo/Connect4/master/version");
+			URLConnection connection = url.openConnection();
+			BufferedReader in = new BufferedReader(new InputStreamReader( connection.getInputStream() ));
+			Scanner scanner = new Scanner(in);
+			version = scanner.next();
+			scanner.close();
+		} catch ( Exception e) {
+			return;
+		}
+		
+		if (!version.equals(VG_Main.VER)) {
+			JLabel label = new JLabel(); // to copy the style of it
+			Font font = label.getFont();
+			StringBuffer style = new StringBuffer("font-family:" + font.getFamily() + ";");
+			style.append("font-weight:normal;");
+			style.append("font-size:" + font.getSize() + "pt;");
+			
+			JEditorPane editorpane = new JEditorPane("text/html", "<html><body style=\"" + style + "\">" + Lang.get("UPDATE_AVAILABLE") + "</body></html>");
+			
+			editorpane.addHyperlinkListener(new HyperlinkListener() {
+				@Override
+				public void hyperlinkUpdate(HyperlinkEvent e) {
+					if (e.getEventType().equals(HyperlinkEvent.EventType.ACTIVATED)) {
+						try {
+							Desktop.getDesktop().browse(e.getURL().toURI());
+						} catch ( Exception e1) {
+							e1.printStackTrace();
+						}
+					}
+				}
+			});
+			editorpane.setEditable(false);
+			editorpane.setBackground(label.getBackground());
+			
+			JOptionPane.showMessageDialog(null, editorpane);
+		}
+	}
 	
 }
