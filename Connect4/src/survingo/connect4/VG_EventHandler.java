@@ -14,6 +14,10 @@ See https://github.com/Survingo/Connect4/blob/master/LICENSE for full license de
 package survingo.connect4;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
 
 import survingo.connect4.gui.VG_GUI_LocalFriend;
 import survingo.connect4.lang.Lang;
@@ -21,14 +25,39 @@ import survingo.connect4.utils.VG_Button;
 
 public class VG_EventHandler {
 	
+	static Timer timer = new Timer(500, new ActionListener() {
+		public void actionPerformed (ActionEvent e) {
+			for ( int i = 0; i < winner.length; i++ ) { // highlight the 4 buttons
+				if (winner[i].getDisabledIcon() != null) {
+					winner[i].setIcon(null);
+					winner[i].setDisabledIcon(null);
+				} else {
+					if (curturn == 1) {
+						winner[i].setIcon( VG_Main.redIcon);
+						winner[i].setDisabledIcon( VG_Main.redIcon ); // set icon and disabled icon so icon won't be grey
+					} else {
+						winner[i].setIcon( VG_Main.yellowIcon );
+						winner[i].setDisabledIcon( VG_Main.yellowIcon );
+					}
+				}
+			}
+		}
+	});
+	static int curturn = 0;
+	static VG_Button[] winner = new VG_Button[4];
+	
 	public static void checkForWin ( VG_Button [] [] check, int turn ) {
 		// var check = all 42 buttons, var turn = current Turn ( 1 -> red, 2 -> yellow )
-		
+		curturn = turn;
 		// diagonal bottom left -> top right
 		for ( int i = 0; i < 3; i++ ) { // y-axis (rows)
 			for ( int j = 0; j < 4; j++ ) { // x-axis (columns)
 				if( check [i] [j].getOwner() == turn && check [i+1] [j+1].getOwner() == turn && check [i+2] [j+2].getOwner() == turn && check [i+3] [j+3].getOwner() == turn ) {
-					win ( turn, check, new VG_Button [] { check [i] [j], check [i+1] [j+1], check [i+2] [j+2], check [i+3] [j+3] } );
+					winner[0] = check [i] [j];
+					winner[1] = check [i+1] [j+1];
+					winner[2] = check [i+2] [j+2];
+					winner[3] = check [i+3] [j+3];
+					win(check);
 				}
 			}
 		}
@@ -37,7 +66,11 @@ public class VG_EventHandler {
 		for ( int i = 0; i < 3; i++ ) {
 			for ( int j = 6; j > 2; j-- ) {
 				if( check [i] [j].getOwner() == turn && check [i+1] [j-1].getOwner() == turn && check [i+2] [j-2].getOwner() == turn && check [i+3] [j-3].getOwner() == turn ) {
-					win ( turn, check, new VG_Button [] { check [i] [j], check [i+1] [j-1], check [i+2] [j-2], check [i+3] [j-3] } );
+					winner[0] = check [i] [j];
+					winner[1] = check [i+1] [j-1];
+					winner[2] = check [i+2] [j-2];
+					winner[3] = check [i+3] [j-3];
+					win(check);
 				}
 			}
 		}
@@ -46,7 +79,11 @@ public class VG_EventHandler {
 		for ( int i = 0; i < 6; i++ ) {
 			for ( int j = 0; j < 4; j++ ) {
 				if( check [i] [j].getOwner() == turn && check [i] [j+1].getOwner() == turn && check [i] [j+2].getOwner() == turn && check [i] [j+3].getOwner() == turn ) {
-					win ( turn, check, new VG_Button [] { check [i] [j], check [i] [j+1], check [i] [j+2], check [i] [j+3] } );
+					winner[0] = check [i] [j];
+					winner[1] = check [i] [j+1];
+					winner[2] = check [i] [j+2];
+					winner[3] = check [i] [j+3];
+					win(check);
 				}
 			}
 		}
@@ -55,7 +92,11 @@ public class VG_EventHandler {
 		for ( int i = 0; i < 3; i++ ) {
 			for ( int j = 0; j < 7; j++ ) {
 				if( check [i] [j].getOwner() == turn && check [i+1] [j].getOwner() == turn && check [i+2] [j].getOwner() == turn && check [i+3] [j].getOwner() == turn ) {
-					win ( turn, check, new VG_Button [] {check [i] [j], check [i+1] [j], check [i+2] [j], check [i+3] [j]} );
+					winner[0] = check [i] [j];
+					winner[1] = check [i+1] [j];
+					winner[2] = check [i+2] [j];
+					winner[3] = check [i+3] [j];
+					win(check);
 				}
 			}
 		}
@@ -63,13 +104,10 @@ public class VG_EventHandler {
 	}
 	
 	// Gewinn-Methode
-	public static void win ( int turn, VG_Button [] [] sf, VG_Button [] b ) {
-		for ( int i = 0; i < b.length; i++ ) { // highlight the 4 buttons
-			b[i].setBackground( Color.BLACK );
-		}
-		
+	public static void win (VG_Button [] [] sf) {
+		timer.start();
 		// update scoreboard
-		if ( turn == 1 ) {
+		if ( curturn == 1 ) {
 			VG_GUI_LocalFriend.redScore++;
 			VG_GUI_LocalFriend.redScoreLabel.setText(""+VG_GUI_LocalFriend.redScore);
 			VG_GUI_LocalFriend.redScoreLabel.setSize(VG_GUI_LocalFriend.redScoreLabel.getPreferredSize().width, VG_GUI_LocalFriend.redScoreLabel.getPreferredSize().height); // optimize size to show complete text
@@ -85,10 +123,11 @@ public class VG_EventHandler {
 	}
 	
 	public static void restart ( VG_Button [] [] b ) {
+		timer.stop();
 		for ( int i = 0; i < b.length; i++) {
 			for (int j = 0; j < 7; j++) {
-				b [i] [j].setBackground(null); // Remove background color
 				b [i] [j].setIcon(null); // Remove Icons
+				b [i] [j].setDisabledIcon(null);
 				b [i] [j].setOwner(0); // Remove owner of button
 				if ( i == 0 ) {
 					b [i] [j].setEnabled(true); // Reactivate first row of button
@@ -98,7 +137,7 @@ public class VG_EventHandler {
 		
 		VG_GUI_LocalFriend.currentTurn = 1;
 		VG_GUI_LocalFriend.currentPlayer.setText( Lang.get("SB_CURTURN_P1") );
-		VG_GUI_LocalFriend.currentPlayer.setForeground( Color.RED );
+		VG_GUI_LocalFriend.currentPlayer.setForeground( new Color(209, 73, 73) );
 	}
 	
 }

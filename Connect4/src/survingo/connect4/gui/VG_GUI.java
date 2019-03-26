@@ -26,6 +26,7 @@ public class VG_GUI {
 	public static void initButton (JPanel frame, ActionListener listener, VG_Button button, int x, int y) {
 		button.addActionListener( listener );
 		button.setBackground( new Color( 238, 238, 238 ) ); // set color of button
+		button.setContentAreaFilled(true);
 		button.setSize( button.getPreferredSize().width, button.getPreferredSize().height );
 		if ( y == 1 ) { // if button is located in first row
 			button.setEnabled(true);

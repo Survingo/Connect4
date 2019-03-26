@@ -31,6 +31,8 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import survingo.connect4.gui.VG_GUI_LocalFriend;
 import survingo.connect4.lang.Lang;
@@ -101,6 +103,12 @@ public class VG_Main extends JFrame implements ActionListener {
 			createProperties();
 		}
 		
+		try {
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
 		Properties prop = new Properties();
 		try {
 			FileInputStream input = new FileInputStream( System.getProperty("user.dir") + "/connect4.properties");
@@ -126,6 +134,12 @@ public class VG_Main extends JFrame implements ActionListener {
 	}
 	
 	public VG_Main () {
+		
+		try {
+			setIconImage ( VG_Main.redIcon.getImage() ); // set icon of window in task bar
+		} catch ( Exception e ) {
+			e.printStackTrace();
+		}
 		
 		JLabel vg = new JLabel( Lang.get("TITLE_MAIN") );
 		vg.setFont(new Font("Liberation Sans", Font.PLAIN, 100));

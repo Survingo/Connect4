@@ -87,12 +87,6 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 		restartButton.addActionListener( this );
 		getContentPane().add(restartButton);
 		
-		try {
-			setIconImage ( VG_Main.redIcon.getImage() ); // Fensterbild festlegen
-		} catch ( Exception e ) {
-			e.printStackTrace();
-		}
-		
 		int z = sf.length; // number of rows = length of array
 		int zCounter;
 		int s = 7; // number of columns
