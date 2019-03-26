@@ -45,6 +45,12 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 		getContentPane().setPreferredSize(new Dimension(1100, 650));
 		getContentPane().setLayout(null);
 		
+		try {
+			setIconImage ( VG_Main.redIcon.getImage() ); // set icon of window in task bar
+		} catch ( Exception e ) {
+			e.printStackTrace();
+		}
+		
 		JPanel gamefield = new JPanel(); // seperate JPanel for game field
 		gamefield.setSize(700,600);
 		gamefield.setLayout( new GridLayout ( 6, 7 ) ); // layout manager sets size and position of buttons automatically

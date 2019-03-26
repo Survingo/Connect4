@@ -147,7 +147,7 @@ public class VG_Main extends JFrame implements ActionListener {
 		vg.setLocation(WIDTH/2-vg.getSize().width/2, new Double(HEIGHT*0.2).intValue() );
 		
 		gO.setFont(new Font("Liberation Sans", Font.PLAIN, 30));
-		gO.setSize(gO.getPreferredSize().width, gO.getPreferredSize().height);
+		gO.setSize(gO.getPreferredSize().width+10, gO.getPreferredSize().height);
 		gO.setSelectedIndex(0);
 		getContentPane().add(gO);
 		gO.setLocation(WIDTH/2-gO.getSize().width/2, HEIGHT/2-gO.getSize().height/2);
