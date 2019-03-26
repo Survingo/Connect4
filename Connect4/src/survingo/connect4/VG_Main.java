@@ -32,7 +32,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 import survingo.connect4.gui.VG_GUI_LocalFriend;
 import survingo.connect4.lang.Lang;
