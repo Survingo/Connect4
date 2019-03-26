@@ -110,7 +110,7 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 		
 		setResizable(false);
 		pack();
-		setLocationRelativeTo(null);
+		setLocationRelativeTo(VG_Main.mainFrame);
 		setVisible(true);
 	}
 	
@@ -124,11 +124,11 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 			if ( currentTurn == 1 ) { // change current turn, if red
 				currentTurn = 2;
 				currentPlayer.setText( Lang.get("SB_CURTURN_P2") ); // update JLabel text
-				currentPlayer.setForeground( Color.YELLOW );
+				currentPlayer.setForeground( new Color(229, 204, 41) );
 			} else { // if yellow
 				currentTurn = 1;
 				currentPlayer.setText( Lang.get("SB_CURTURN_P1") );
-				currentPlayer.setForeground( Color.RED );
+				currentPlayer.setForeground( new Color(209, 73, 73) );
 			}
 		}
 		

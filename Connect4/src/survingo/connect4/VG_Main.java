@@ -16,6 +16,8 @@ package survingo.connect4;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -24,6 +26,7 @@ import java.net.URL;
 import java.util.Properties;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,11 +36,21 @@ import survingo.connect4.gui.VG_GUI_LocalFriend;
 import survingo.connect4.lang.Lang;
 import survingo.connect4.utils.Updater;
 
-public class VG_Main extends JFrame {
+public class VG_Main extends JFrame implements ActionListener {
 	
+	public static int WIDTH = 1100;
+	public static int HEIGHT = 650;
 	public static ImageIcon	redIcon, yellowIcon;
 	public static final String VER = "0.2.0";
-	static JFrame mainFrame, localFriendFrame;
+	public static JFrame 	mainFrame;
+	static JFrame localFriendFrame;
+	String[] modes = {
+			"Locale Player vs. Player",
+			"Player vs. AI - Easy",
+			"Player vs. AI - Hard",
+			"Online Player vs. Player"
+			};
+	JComboBox<String> gO = new JComboBox<String>(modes);
 	
 	// function to scale images
 	public static ImageIcon setImage ( String path, int width, int height ) {
@@ -113,36 +126,47 @@ public class VG_Main extends JFrame {
 	}
 	
 	public VG_Main () {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle( Lang.get("TITLE_MAIN") );
-		getContentPane().setPreferredSize(new Dimension(1100, 650));
-		getContentPane().setLayout(null);
 		
 		JLabel vg = new JLabel( Lang.get("TITLE_MAIN") );
-		vg.setFont(new Font("Liberation Sans", Font.PLAIN, 80));
+		vg.setFont(new Font("Liberation Sans", Font.PLAIN, 100));
 		vg.setSize ( vg.getPreferredSize().width, vg.getPreferredSize().height );
-		vg.setLocation ( 300, 100 );
 		getContentPane().add(vg);
+		vg.setLocation(WIDTH/2-vg.getSize().width/2, new Double(HEIGHT*0.2).intValue() );
 		
-		// TO-DO...
-		JComboBox<String> gameOptions = new JComboBox<String>();
-		gameOptions.addItem("Locale Player vs. Player");
-		gameOptions.addItem("Player vs. AI - Easy");
-		gameOptions.addItem("Player vs. AI - Hard");
-		gameOptions.addItem("Online Player vs. Player");
-		gameOptions.setSelectedIndex(0);
-		getContentPane().add(gameOptions);
+		gO.setFont(new Font("Liberation Sans", Font.PLAIN, 30));
+		gO.setSize(gO.getPreferredSize().width, gO.getPreferredSize().height);
+		gO.setSelectedIndex(0);
+		getContentPane().add(gO);
+		gO.setLocation(WIDTH/2-gO.getSize().width/2, HEIGHT/2-gO.getSize().height/2);
+		
+		JButton play = new JButton("Start");
+		play.setFont(new Font("Liberation Sans", Font.PLAIN, 30));
+		play.setSize(play.getPreferredSize().width, play.getPreferredSize().height);
+		play.addActionListener(this);
+		getContentPane().add(play);
+		play.setLocation(WIDTH/2-play.getSize().width/2, new Double(HEIGHT*0.6).intValue());
 		
 		JLabel versionLabel = new JLabel( "v" + VER );
-		versionLabel.setFont(new Font("Liberation Sans", Font.PLAIN, 25));
-		versionLabel.setSize ( versionLabel.getPreferredSize().width, versionLabel.getPreferredSize().height );
-		versionLabel.setLocation ( 1020, 620 );
+		versionLabel.setFont(new Font("Liberation Sans", Font.PLAIN, 40));
+		versionLabel.setSize(versionLabel.getPreferredSize().width, versionLabel.getPreferredSize().height);
+		versionLabel.setLocation( WIDTH-versionLabel.getSize().width-10, new Double(HEIGHT*0.93).intValue() );
 		getContentPane().add(versionLabel);
 		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle( Lang.get("TITLE_MAIN") );
+		getContentPane().setPreferredSize( new Dimension(WIDTH, HEIGHT) );
+		getContentPane().setLayout(null);
 		setResizable(false);
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		if ( gO.getSelectedItem() != null && gO.getSelectedItem().equals(modes[0])) {
+			new VG_GUI_LocalFriend();
+		}
+		//TO-DO...
 	}
 	
 }
