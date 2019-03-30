@@ -182,9 +182,11 @@ public class VG_Main extends JFrame implements ActionListener {
 				localPVP.setVisible(true);
 			}
 		}
+		
 		if (gO.getSelectedItem().equals(modes[1])) {
 			JOptionPane.showMessageDialog(mainFrame, "This feature is not available yet!");
 		}
+		
 		if (gO.getSelectedItem().equals(modes[2])) {
 			if (AIEasy == null) {
 				AIEasy = new VG_GUI_LocalAI_Easy();
@@ -192,6 +194,7 @@ public class VG_Main extends JFrame implements ActionListener {
 				AIEasy.setVisible(true);
 			}
 		}
+		
 		if (gO.getSelectedItem().equals(modes[3])) {
 			JOptionPane.showMessageDialog(mainFrame, "This feature is not available yet!");
 		}
