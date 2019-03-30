@@ -65,10 +65,6 @@ public class VG_Main extends JFrame implements ActionListener {
 		}
 	}
 	
-	public static void getProperty () {
-		
-	}
-	
 	public static void createProperties () {
 		File f = new File(System.getProperty("user.dir") + "/connect4.properties");
 		try {
@@ -183,13 +179,13 @@ public class VG_Main extends JFrame implements ActionListener {
 			new VG_GUI_LocalFriend();
 		}
 		if (gO.getSelectedItem().equals(modes[1])) {
-			JOptionPane.showMessageDialog(null, "This feature is not available yet!");
+			JOptionPane.showMessageDialog(mainFrame, "This feature is not available yet!");
 		}
 		if (gO.getSelectedItem().equals(modes[2])) {
 			new VG_GUI_LocalAI_Easy();
 		}
 		if (gO.getSelectedItem().equals(modes[3])) {
-			JOptionPane.showMessageDialog(null, "This feature is not available yet!");
+			JOptionPane.showMessageDialog(mainFrame, "This feature is not available yet!");
 		}
 	}
 	
