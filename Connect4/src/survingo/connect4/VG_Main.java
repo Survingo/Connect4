@@ -33,21 +33,22 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import survingo.connect4.gui.VG_GUI_LocalAI_Easy;
 import survingo.connect4.gui.VG_GUI_LocalFriend;
 import survingo.connect4.lang.Lang;
 import survingo.connect4.utils.Updater;
 
 public class VG_Main extends JFrame implements ActionListener {
 	
+	public static final String	VER 			= "0.2.0";
 	public static int			WIDTH			= 1100;
 	public static int			HEIGHT			= 650;
 	public static ImageIcon		redIcon, yellowIcon;
-	public static final String	VER 			= "0.2.0";
 	public static JFrame		mainFrame;
-	String[]					modes 			= {"Locale Player vs. Player",
-												"Player vs. AI - Easy",
-												"Player vs. AI - Hard",
-												"Online Player vs. Player"};
+	String[]					modes 			= {Lang.get("TITLE_LOCAL_PVP"),
+												Lang.get("TITLE_ONLINE_PVP"),
+												Lang.get("TITLE_AI_EASY"),
+												Lang.get("TITLE_AI_HARD")};
 	JComboBox<String>			gO				= new JComboBox<String>(modes);
 	
 	// function to scale images
@@ -56,7 +57,7 @@ public class VG_Main extends JFrame implements ActionListener {
 		
 		if ( IconURL != null ) { // check if image exists
 			ImageIcon icon = new ImageIcon( IconURL );
-			icon.setImage( icon.getImage().getScaledInstance( width, height, Image.SCALE_SMOOTH ) );
+			icon.setImage( icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH) );
 			return icon;
 		} else { // image does not exist -> return new dummy
 			return new ImageIcon();
@@ -137,7 +138,7 @@ public class VG_Main extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
 		
-		JLabel vg = new JLabel( Lang.get("TITLE_MAIN") );
+		JLabel vg = new JLabel( Lang.get("TITLE") );
 		vg.setFont(new Font("Liberation Sans", Font.PLAIN, 100));
 		vg.setSize ( vg.getPreferredSize().width, vg.getPreferredSize().height );
 		getContentPane().add(vg);
@@ -163,7 +164,7 @@ public class VG_Main extends JFrame implements ActionListener {
 		getContentPane().add(versionLabel);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle( Lang.get("TITLE_MAIN") );
+		setTitle( Lang.get("TITLE") );
 		getContentPane().setPreferredSize( new Dimension(WIDTH, HEIGHT) );
 		getContentPane().setLayout(null);
 		setResizable(false);
@@ -173,10 +174,18 @@ public class VG_Main extends JFrame implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if ( gO.getSelectedItem() != null && gO.getSelectedItem().equals(modes[0])) {
+		if (gO.getSelectedItem().equals(modes[0])) {
 			new VG_GUI_LocalFriend();
 		}
-		//TO-DO...
+		if (gO.getSelectedItem().equals(modes[1])) {
+			JOptionPane.showMessageDialog(null, "This feature is not available yet!");
+		}
+		if (gO.getSelectedItem().equals(modes[2])) {
+			new VG_GUI_LocalAI_Easy();
+		}
+		if (gO.getSelectedItem().equals(modes[3])) {
+			JOptionPane.showMessageDialog(null, "This feature is not available yet!");
+		}
 	}
 	
 }

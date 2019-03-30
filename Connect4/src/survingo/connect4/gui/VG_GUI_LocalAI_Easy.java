@@ -29,7 +29,7 @@ import survingo.connect4.VG_Main;
 import survingo.connect4.lang.Lang;
 import survingo.connect4.utils.VG_Button;
 
-public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
+public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 	
 	public static int		currentTurn			= 1; // 1 - red, 2 - yellow
 	public static int		redScore 			= 0, // score counter
@@ -43,9 +43,9 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 	JLabel					yellowScoreboard	= new JLabel();
 	VG_Button[][]			sf					= new VG_Button [6] [7]; // create game field using multidimensional array = 6 rows (y-axis) / 7 columns (x-axis)
 	
-	public VG_GUI_LocalFriend () {
+	public VG_GUI_LocalAI_Easy () {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setTitle( Lang.get("TITLE") + " - " + Lang.get("TITLE_LOCAL_PVP") );
+		setTitle( Lang.get("TITLE") + " - " + Lang.get("TITLE_AI_EASY") );
 		getContentPane().setPreferredSize(new Dimension(VG_Main.WIDTH, VG_Main.HEIGHT));
 		getContentPane().setLayout(null);
 		setResizable(false);

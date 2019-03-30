@@ -21,8 +21,13 @@ public class German {
 	public static Map<String, String> getMap () {
 		Map<String, String> map = new HashMap<String, String>();
 		
-		map.put("TITLE_MAIN", "Vier Gewinnt");
-		map.put("TITLE_LOCALFRIEND", "Vier Gewinnt - Lokales Spiel mit einem Freund");
+		map.put("TITLE", "Vier Gewinnt");
+		map.put("TITLE_LOCAL_PVP", "Lokales Spiel - Spieler gegen Spieler");
+		map.put("TITLE_ONLINE_PVP", "Online - Spieler gegen Spieler");
+		map.put("TITLE_AI_EASY", "Spieler gegen KI - Einfach");
+		map.put("TITLE_AI_HARD", "Spieler gegen KI - Schwer");
+		
+		
 		map.put("RESTART_BUTTON", "Neustarten");
 		map.put("UPDATE_AVAILABLE", "Ein neues Update ist verfügbar! Klicke <a href=\"https://github.com/Survingo/Connect4/releases\"> hier</a>, um es herunterzuladen.");
 		map.put("PROPERTIES_NOT_UP_TO_DATE", "Die Version der Eigenschaftendatei ist nicht mit der Version des Programmes kompatibel. Ein neue Datei wird nun generiert...");
