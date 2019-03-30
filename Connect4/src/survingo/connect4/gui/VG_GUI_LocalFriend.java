@@ -31,15 +31,17 @@ import survingo.connect4.utils.VG_Button;
 
 public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 	
-	public static int currentTurn = 1; // 1 - red, 2 - yellow
-	public static int redScore = 0, yellowScore = 0; // score counter
-	JButton restartButton = new JButton( Lang.get("RESTART_BUTTON") );
-	public static JLabel currentPlayer = new JLabel( Lang.get("SB_CURTURN_P1") );
-	public static JLabel redScoreLabel = new JLabel ( "0" ), yellowScoreLabel = new JLabel ( "0" );
-	JLabel scoreboardLabel = new JLabel();
-	JLabel redScoreboard = new JLabel();
-	JLabel yellowScoreboard = new JLabel();
-	VG_Button [] [] sf = new VG_Button [6] [7]; // create game field using multidimensional array = 6 rows (y-axis) / 7 columns (x-axis)
+	public static int		currentTurn			= 1; // 1 - red, 2 - yellow
+	public static int		redScore 			= 0, // score counter
+							yellowScore			= 0;
+	JButton					restartButton		= new JButton( Lang.get("RESTART_BUTTON") );
+	public static JLabel	currentPlayer		= new JLabel( Lang.get("SB_CURTURN_P1") );
+	public static JLabel	redScoreLabel 		= new JLabel ( "0" ), 
+							yellowScoreLabel	= new JLabel ( "0" );
+	JLabel					scoreboardLabel		= new JLabel();
+	JLabel					redScoreboard		= new JLabel();
+	JLabel					yellowScoreboard	= new JLabel();
+	VG_Button[][]			sf					= new VG_Button [6] [7]; // create game field using multidimensional array = 6 rows (y-axis) / 7 columns (x-axis)
 	
 	public VG_GUI_LocalFriend () {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
