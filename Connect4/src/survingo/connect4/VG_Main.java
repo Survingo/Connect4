@@ -44,7 +44,7 @@ public class VG_Main extends JFrame implements ActionListener {
 	public static int			WIDTH			= 1100;
 	public static int			HEIGHT			= 650;
 	public static ImageIcon		redIcon, yellowIcon;
-	public static JFrame		mainFrame;
+	public static JFrame		mainFrame, localPVP, AIEasy;
 	String[]					modes 			= {Lang.get("TITLE_LOCAL_PVP"),
 												Lang.get("TITLE_ONLINE_PVP"),
 												Lang.get("TITLE_AI_EASY"),
@@ -176,13 +176,21 @@ public class VG_Main extends JFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		if (gO.getSelectedItem().equals(modes[0])) {
-			new VG_GUI_LocalFriend();
+			if (localPVP == null) {
+				localPVP = new VG_GUI_LocalFriend();
+			} else {
+				localPVP.setVisible(true);
+			}
 		}
 		if (gO.getSelectedItem().equals(modes[1])) {
 			JOptionPane.showMessageDialog(mainFrame, "This feature is not available yet!");
 		}
 		if (gO.getSelectedItem().equals(modes[2])) {
-			new VG_GUI_LocalAI_Easy();
+			if (AIEasy == null) {
+				AIEasy = new VG_GUI_LocalAI_Easy();
+			} else {
+				AIEasy.setVisible(true);
+			}
 		}
 		if (gO.getSelectedItem().equals(modes[3])) {
 			JOptionPane.showMessageDialog(mainFrame, "This feature is not available yet!");
