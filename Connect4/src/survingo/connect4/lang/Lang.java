@@ -17,14 +17,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import survingo.connect4.VG_Main;
+
 public class Lang {
 	
 	static String lang;
 	static Map<String, String> deu = new HashMap<String, String>();
 	static Map<String, String> eng = new HashMap<String, String>();
 	
-	public static void init (Properties prop) {
-		lang = prop.getProperty("lang", "eng");
+	public static void init () {
+		lang = VG_Main.prop.getProperty("lang", "eng");
 		
 		if ( lang.equals("deu") ) {
 			deu = German.getMap();

@@ -50,6 +50,7 @@ public class VG_Main extends JFrame implements ActionListener {
 												Lang.get("TITLE_AI_EASY"),
 												Lang.get("TITLE_AI_HARD")};
 	JComboBox<String>			gO				= new JComboBox<String>(modes);
+	public static Properties	prop			= new Properties();
 	
 	// function to scale images
 	public static ImageIcon setImage ( String path, int width, int height ) {
@@ -62,6 +63,10 @@ public class VG_Main extends JFrame implements ActionListener {
 		} else { // image does not exist -> return new dummy
 			return new ImageIcon();
 		}
+	}
+	
+	public static void getProperty () {
+		
 	}
 	
 	public static void createProperties () {
@@ -106,18 +111,14 @@ public class VG_Main extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
 		
-		Properties prop = new Properties();
 		try {
 			FileInputStream input = new FileInputStream( System.getProperty("user.dir") + "/connect4.properties");
 			prop.load(input);
 			input.close();
-			Lang.init(prop);
+			Lang.init();
 			if (!prop.getProperty("version", "null").equals(VER)) {
 				JOptionPane.showMessageDialog(null, Lang.get("PROPERTIES_NOT_UP_TO_DATE"));
 				createProperties();
-			}
-			if (prop.getProperty("update", "true").equals("true")) {
-				Updater.checkForUpdate();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -128,6 +129,10 @@ public class VG_Main extends JFrame implements ActionListener {
 		yellowIcon = setImage ( "utils/VG_Yellow.png", 90, 90 );
 		
 		mainFrame = new VG_Main();
+		
+		if (prop.getProperty("update", "true").equals("true")) {
+			Updater.checkForUpdate();
+		}
 	}
 	
 	public VG_Main () {
