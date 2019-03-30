@@ -123,7 +123,7 @@ public class VG_EventHandler {
 		}
 	}
 	
-	public static void restart (VG_Button[][] b, int curTurn, JLabel curPl) {
+	public static void restart (VG_Button[][] b) {
 		timer.stop();
 		for ( int i = 0; i < b.length; i++) {
 			for (int j = 0; j < 7; j++) {
@@ -132,10 +132,6 @@ public class VG_EventHandler {
 				b[i][j].setOwner(0); // Remove owner of button
 			}
 		}
-		
-		curTurn = 1;
-		curPl.setText( Lang.get("SB_CURTURN_P1") );
-		curPl.setForeground( new Color(209, 73, 73) );
 		
 		for ( int i = 0; i < 7; i++ ) { // Reactivate first row of buttons
 			b[0][i].setEnabled(true);

@@ -88,7 +88,7 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 	
 	public void actionPerformed (ActionEvent e) {
 		if (e.getSource() == restartButton) {
-			VG_EventHandler.restart(sf, currentTurn, currentPlayer);
+			VG_EventHandler.restart(sf);
 		} else {
 			VG_GUI.setButton(sf, (VG_Button) e.getSource(), currentTurn); // set button using that function (drop from top to bottom)
 			VG_EventHandler.checkForWin(sf, currentTurn);
