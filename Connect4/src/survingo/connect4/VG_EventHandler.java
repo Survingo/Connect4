@@ -13,15 +13,12 @@ See https://github.com/Survingo/Connect4/blob/master/LICENSE for full license de
 
 package survingo.connect4;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JLabel;
 import javax.swing.Timer;
 
 import survingo.connect4.gui.VG_GUI_LocalFriend;
-import survingo.connect4.lang.Lang;
 import survingo.connect4.utils.VG_Button;
 
 public class VG_EventHandler {

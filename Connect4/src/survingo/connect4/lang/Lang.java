@@ -15,7 +15,6 @@ package survingo.connect4.lang;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 import survingo.connect4.VG_Main;
 
