@@ -43,8 +43,7 @@ public class VG_Main extends JFrame implements ActionListener {
 	public static int HEIGHT = 650;
 	public static ImageIcon	redIcon, yellowIcon;
 	public static final String VER = "0.2.0";
-	public static JFrame 	mainFrame;
-	static JFrame localFriendFrame;
+	public static JFrame mainFrame;
 	String[] modes = {
 			"Locale Player vs. Player",
 			"Player vs. AI - Easy",
@@ -135,7 +134,7 @@ public class VG_Main extends JFrame implements ActionListener {
 	public VG_Main () {
 		
 		try {
-			setIconImage ( VG_Main.redIcon.getImage() ); // set icon of window in task bar
+			setIconImage ( redIcon.getImage() ); // set icon of window in task bar
 		} catch ( Exception e ) {
 			e.printStackTrace();
 		}
@@ -177,7 +176,8 @@ public class VG_Main extends JFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		if ( gO.getSelectedItem() != null && gO.getSelectedItem().equals(modes[0])) {
-			new VG_GUI_LocalFriend();
+			JFrame localFriend = new VG_GUI_LocalFriend();
+			localFriend.setVisible(true);
 		}
 		//TO-DO...
 	}
