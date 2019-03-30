@@ -36,7 +36,7 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 							yellowScore			= 0;
 	JButton					restartButton		= new JButton( Lang.get("RESTART_BUTTON") );
 	public static JLabel	currentPlayer		= new JLabel( Lang.get("SB_CURTURN_P1") );
-	public static JLabel	redScoreLabel 		= new JLabel ( "0" ), 
+	public static JLabel	redScoreLabel 		= new JLabel ( "0" ),
 							yellowScoreLabel	= new JLabel ( "0" );
 	JLabel					scoreboardLabel		= new JLabel();
 	JLabel					redScoreboard		= new JLabel();
@@ -82,11 +82,13 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 		} catch ( Exception e ) {
 			e.printStackTrace();
 		}
+		
+		setVisible(true);
 	}
 	
-	public void actionPerformed ( ActionEvent e ) {
+	public void actionPerformed (ActionEvent e) {
 		if (e.getSource() == restartButton) {
-			VG_EventHandler.restart(sf);
+			VG_EventHandler.restart(sf, currentTurn, currentPlayer);
 		} else {
 			VG_GUI.setButton(sf, (VG_Button) e.getSource(), currentTurn); // set button using that function (drop from top to bottom)
 			VG_EventHandler.checkForWin(sf, currentTurn);

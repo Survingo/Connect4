@@ -17,6 +17,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JLabel;
 import javax.swing.Timer;
 
 import survingo.connect4.gui.VG_GUI_LocalFriend;
@@ -105,6 +106,10 @@ public class VG_EventHandler {
 	
 	// Gewinn-Methode
 	public static void win (VG_Button [] [] sf) {
+		for ( int i = 0; i < 7; i++ ) { // Deactivate first row of buttons
+			sf[0][i].setEnabled(false);
+		}
+		
 		timer.start();
 		// update scoreboard
 		if ( curturn == 1 ) {
@@ -116,28 +121,25 @@ public class VG_EventHandler {
 			VG_GUI_LocalFriend.yellowScoreLabel.setText(""+VG_GUI_LocalFriend.yellowScore);
 			VG_GUI_LocalFriend.yellowScoreLabel.setSize(VG_GUI_LocalFriend.yellowScoreLabel.getPreferredSize().width, VG_GUI_LocalFriend.yellowScoreLabel.getPreferredSize().height);
 		}
-		
-		for ( int i = 0; i < 7; i++ ) { // Deactivate first row of buttons
-			sf [0] [i].setEnabled(false);
-		}
 	}
 	
-	public static void restart ( VG_Button [] [] b ) {
+	public static void restart (VG_Button[][] b, int curTurn, JLabel curPl) {
 		timer.stop();
 		for ( int i = 0; i < b.length; i++) {
 			for (int j = 0; j < 7; j++) {
-				b [i] [j].setIcon(null); // Remove Icons
-				b [i] [j].setDisabledIcon(null);
-				b [i] [j].setOwner(0); // Remove owner of button
-				if ( i == 0 ) {
-					b [i] [j].setEnabled(true); // Reactivate first row of button
-				}
+				b[i][j].setIcon(null); // Remove Icons
+				b[i][j].setDisabledIcon(null);
+				b[i][j].setOwner(0); // Remove owner of button
 			}
 		}
 		
-		VG_GUI_LocalFriend.currentTurn = 1;
-		VG_GUI_LocalFriend.currentPlayer.setText( Lang.get("SB_CURTURN_P1") );
-		VG_GUI_LocalFriend.currentPlayer.setForeground( new Color(209, 73, 73) );
+		curTurn = 1;
+		curPl.setText( Lang.get("SB_CURTURN_P1") );
+		curPl.setForeground( new Color(209, 73, 73) );
+		
+		for ( int i = 0; i < 7; i++ ) { // Reactivate first row of buttons
+			b[0][i].setEnabled(true);
+		}
 	}
 	
 }

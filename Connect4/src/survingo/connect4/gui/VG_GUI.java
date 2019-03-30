@@ -13,7 +13,6 @@ See https://github.com/Survingo/Connect4/blob/master/LICENSE for full license de
 
 package survingo.connect4.gui;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 

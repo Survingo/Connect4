@@ -39,18 +39,16 @@ import survingo.connect4.utils.Updater;
 
 public class VG_Main extends JFrame implements ActionListener {
 	
-	public static int WIDTH = 1100;
-	public static int HEIGHT = 650;
-	public static ImageIcon	redIcon, yellowIcon;
-	public static final String VER = "0.2.0";
-	public static JFrame mainFrame;
-	String[] modes = {
-			"Locale Player vs. Player",
-			"Player vs. AI - Easy",
-			"Player vs. AI - Hard",
-			"Online Player vs. Player"
-			};
-	JComboBox<String> gO = new JComboBox<String>(modes);
+	public static int			WIDTH			= 1100;
+	public static int			HEIGHT			= 650;
+	public static ImageIcon		redIcon, yellowIcon;
+	public static final String	VER 			= "0.2.0";
+	public static JFrame		mainFrame;
+	String[]					modes 			= {"Locale Player vs. Player",
+												"Player vs. AI - Easy",
+												"Player vs. AI - Hard",
+												"Online Player vs. Player"};
+	JComboBox<String>			gO				= new JComboBox<String>(modes);
 	
 	// function to scale images
 	public static ImageIcon setImage ( String path, int width, int height ) {
@@ -103,8 +101,8 @@ public class VG_Main extends JFrame implements ActionListener {
 		
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-		} catch (Exception e1) {
-			e1.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		Properties prop = new Properties();
@@ -176,8 +174,7 @@ public class VG_Main extends JFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		if ( gO.getSelectedItem() != null && gO.getSelectedItem().equals(modes[0])) {
-			JFrame localFriend = new VG_GUI_LocalFriend();
-			localFriend.setVisible(true);
+			new VG_GUI_LocalFriend();
 		}
 		//TO-DO...
 	}
