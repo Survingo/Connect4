@@ -62,16 +62,16 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 		
 		JPanel gamefield = new JPanel(); // seperate JPanel for game field
 		gamefield.setSize(700, 600);
-		gamefield.setLayout( new GridLayout(6, 7) ); // layout manager sets size and position of buttons automatically
-		getContentPane().add(gamefield);
+		gamefield.setLayout(new GridLayout(6, 7)); // layout manager sets size and position of buttons automatically
 		gamefield.setLocation(25, 25); // add small edge
+		getContentPane().add(gamefield);
 		
-		int zCounter;
-		int sCounter;
-		for ( zCounter = 0; zCounter < sf.length; zCounter++ ) { // loop for rows
-			for ( sCounter = 0; sCounter < 7; sCounter++ ) { // loop for columns
-				sf [ zCounter ] [ sCounter ] = new VG_Button( null, zCounter+1, sCounter+1 ); // init all 42 game field buttons
-				VG_GUI.initButton( gamefield, this, sf [zCounter] [sCounter], zCounter);
+		int z; //row
+		int s; //column
+		for (z = 0; z < sf.length; z++) { // loop for rows
+			for (s = 0; s < 7; s++) { // loop for columns
+				sf[z][s] = new VG_Button(null, z+1, s+1); // init all 42 game field buttons
+				VG_GUI.initButton(gamefield, this, sf[z][s], z);
 			}
 		}
 		
@@ -84,10 +84,10 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 	
 	public void actionPerformed ( ActionEvent e ) {
 		if (e.getSource() == restartButton) {
-			VG_EventHandler.restart( sf );
+			VG_EventHandler.restart(sf);
 		} else {
 			VG_GUI.setButton(sf, (VG_Button) e.getSource(), currentTurn); // set button using that function (drop from top to bottom)
-			VG_EventHandler.checkForWin( sf, currentTurn );
+			VG_EventHandler.checkForWin(sf, currentTurn);
 			
 			if ( currentTurn == 1 ) { // change current turn, if red
 				currentTurn = 2;
