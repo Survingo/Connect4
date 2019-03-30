@@ -21,25 +21,20 @@ import survingo.connect4.VG_Main;
 public class Lang {
 	
 	static String lang;
-	static Map<String, String> deu = new HashMap<String, String>();
-	static Map<String, String> eng = new HashMap<String, String>();
+	static Map<String, String> map = new HashMap<String, String>();
 	
 	public static void init () {
 		lang = VG_Main.prop.getProperty("lang", "eng");
 		
 		if ( lang.equals("deu") ) {
-			deu = German.getMap();
+			map = German.getMap();
 		} else {
-			eng = English.getMap();
+			map = English.getMap();
 		}
 	}
 	
 	public static String get (String key) { // function to get a language string by name
-		if (lang.equals("deu")) {
-			return deu.get(key);
-		} else {
-			return eng.get(key);
-		}
+		return map.get(key);
 	}
 	
 }

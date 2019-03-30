@@ -44,14 +44,6 @@ public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 	VG_Button[][]			sf					= new VG_Button [6] [7]; // create game field using multidimensional array = 6 rows (y-axis) / 7 columns (x-axis)
 	
 	public VG_GUI_LocalAI_Easy () {
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setTitle( Lang.get("TITLE") + " - " + Lang.get("TITLE_AI_EASY") );
-		getContentPane().setPreferredSize(new Dimension(VG_Main.WIDTH, VG_Main.HEIGHT));
-		getContentPane().setLayout(null);
-		setResizable(false);
-		pack();
-		setLocationRelativeTo(VG_Main.mainFrame);
-		
 		VG_GUI.initUI(scoreboardLabel, redScoreboard, yellowScoreboard, redScoreLabel, yellowScoreLabel, currentPlayer, restartButton, this);
 		
 		getContentPane().add(scoreboardLabel);
@@ -83,6 +75,13 @@ public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
 		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle( Lang.get("TITLE") + " - " + Lang.get("TITLE_AI_EASY") );
+		getContentPane().setPreferredSize(new Dimension(VG_Main.WIDTH, VG_Main.HEIGHT));
+		getContentPane().setLayout(null);
+		setResizable(false);
+		pack();
+		setLocationRelativeTo(VG_Main.mainFrame);
 		setVisible(true);
 	}
 	
