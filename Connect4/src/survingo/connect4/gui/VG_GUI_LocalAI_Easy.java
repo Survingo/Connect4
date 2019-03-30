@@ -18,6 +18,9 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -89,6 +92,10 @@ public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 		if (e.getSource() == restartButton) {
 			VG_EventHandler.restart(sf);
 		} else {
+			if (currentTurn == 2) {
+				return;
+			}
+			
 			VG_GUI.setButton(sf, (VG_Button) e.getSource(), currentTurn); // set button using that function (drop from top to bottom)
 			
 			if ( VG_EventHandler.won(sf, currentTurn) ) { // check if someone has won
@@ -107,17 +114,55 @@ public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 				}
 			}
 			
-			if ( currentTurn == 1 ) { // change current turn, if red
-				currentTurn = 2;
-				currentPlayer.setText( Lang.get("SB_CURTURN_P2") ); // update JLabel text
-				currentPlayer.setForeground( new Color(229, 204, 41) );
-			} else { // if yellow
-				currentTurn = 1;
-				currentPlayer.setText( Lang.get("SB_CURTURN_P1") );
-				currentPlayer.setForeground( new Color(209, 73, 73) );
+			currentTurn = 2;
+			currentPlayer.setText( Lang.get("SB_CURTURN_P2") ); // update JLabel text
+			currentPlayer.setForeground( new Color(229, 204, 41) );
+			
+			Timer timer = new Timer();
+			TimerTask task = new TimerTask() {
+				public void run() {
+					makeAIMove();
+				}
+			};
+			timer.schedule(task, 3000);
+		}
+		
+	}
+	
+	public void makeAIMove () {
+		Random r = new Random();
+		int random;
+		boolean loop = true;
+		
+		do {
+			random = r.nextInt(6);
+			if ( sf[0][random].isEnabled() ) {
+				VG_GUI.setButton(sf, sf[0][random], currentTurn);
+				loop = false;
+			} else {
+				random = r.nextInt(6);
+			}
+		} while (loop);
+		
+		if ( VG_EventHandler.won(sf, currentTurn) ) { // check if someone has won
+			for ( int i = 0; i < 7; i++ ) { // Deactivate first row of buttons
+				sf[0][i].setEnabled(false);
+			}
+			
+			if ( currentTurn == 1 ) { // update scoreboard
+				VG_GUI_LocalFriend.redScore++;
+				VG_GUI_LocalFriend.redScoreLabel.setText(""+VG_GUI_LocalFriend.redScore);
+				VG_GUI_LocalFriend.redScoreLabel.setSize(VG_GUI_LocalFriend.redScoreLabel.getPreferredSize().width, VG_GUI_LocalFriend.redScoreLabel.getPreferredSize().height); // optimize size to show complete text
+			} else {
+				VG_GUI_LocalFriend.yellowScore++;
+				VG_GUI_LocalFriend.yellowScoreLabel.setText(""+VG_GUI_LocalFriend.yellowScore);
+				VG_GUI_LocalFriend.yellowScoreLabel.setSize(VG_GUI_LocalFriend.yellowScoreLabel.getPreferredSize().width, VG_GUI_LocalFriend.yellowScoreLabel.getPreferredSize().height);
 			}
 		}
 		
+		currentTurn = 1;
+		currentPlayer.setText( Lang.get("SB_CURTURN_P1") );
+		currentPlayer.setForeground( new Color(209, 73, 73) );
 	}
 	
 }
