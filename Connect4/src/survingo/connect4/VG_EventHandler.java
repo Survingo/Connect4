@@ -18,7 +18,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-import survingo.connect4.gui.VG_GUI_LocalFriend;
 import survingo.connect4.utils.VG_Button;
 
 public class VG_EventHandler {
@@ -44,7 +43,7 @@ public class VG_EventHandler {
 	static int curturn = 0;
 	static VG_Button[] winner = new VG_Button[4];
 	
-	public static void checkForWin ( VG_Button [] [] check, int turn ) {
+	public static boolean won ( VG_Button [] [] check, int turn ) {
 		// var check = all 42 buttons, var turn = current Turn ( 1 -> red, 2 -> yellow )
 		curturn = turn;
 		// diagonal bottom left -> top right
@@ -55,7 +54,8 @@ public class VG_EventHandler {
 					winner[1] = check [i+1] [j+1];
 					winner[2] = check [i+2] [j+2];
 					winner[3] = check [i+3] [j+3];
-					win(check);
+					timer.start();
+					return true;
 				}
 			}
 		}
@@ -68,7 +68,8 @@ public class VG_EventHandler {
 					winner[1] = check [i+1] [j-1];
 					winner[2] = check [i+2] [j-2];
 					winner[3] = check [i+3] [j-3];
-					win(check);
+					timer.start();
+					return true;
 				}
 			}
 		}
@@ -81,7 +82,8 @@ public class VG_EventHandler {
 					winner[1] = check [i] [j+1];
 					winner[2] = check [i] [j+2];
 					winner[3] = check [i] [j+3];
-					win(check);
+					timer.start();
+					return true;
 				}
 			}
 		}
@@ -94,30 +96,13 @@ public class VG_EventHandler {
 					winner[1] = check [i+1] [j];
 					winner[2] = check [i+2] [j];
 					winner[3] = check [i+3] [j];
-					win(check);
+					timer.start();
+					return true;
 				}
 			}
 		}
 		
-	}
-	
-	// Gewinn-Methode
-	public static void win (VG_Button [] [] sf) {
-		for ( int i = 0; i < 7; i++ ) { // Deactivate first row of buttons
-			sf[0][i].setEnabled(false);
-		}
-		
-		timer.start();
-		// update scoreboard
-		if ( curturn == 1 ) {
-			VG_GUI_LocalFriend.redScore++;
-			VG_GUI_LocalFriend.redScoreLabel.setText(""+VG_GUI_LocalFriend.redScore);
-			VG_GUI_LocalFriend.redScoreLabel.setSize(VG_GUI_LocalFriend.redScoreLabel.getPreferredSize().width, VG_GUI_LocalFriend.redScoreLabel.getPreferredSize().height); // optimize size to show complete text
-		} else {
-			VG_GUI_LocalFriend.yellowScore++;
-			VG_GUI_LocalFriend.yellowScoreLabel.setText(""+VG_GUI_LocalFriend.yellowScore);
-			VG_GUI_LocalFriend.yellowScoreLabel.setSize(VG_GUI_LocalFriend.yellowScoreLabel.getPreferredSize().width, VG_GUI_LocalFriend.yellowScoreLabel.getPreferredSize().height);
-		}
+		return false;
 	}
 	
 	public static void restart (VG_Button[][] b) {

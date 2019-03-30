@@ -90,7 +90,22 @@ public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 			VG_EventHandler.restart(sf);
 		} else {
 			VG_GUI.setButton(sf, (VG_Button) e.getSource(), currentTurn); // set button using that function (drop from top to bottom)
-			VG_EventHandler.checkForWin(sf, currentTurn);
+			
+			if ( VG_EventHandler.won(sf, currentTurn) ) { // check if someone has won
+				for ( int i = 0; i < 7; i++ ) { // Deactivate first row of buttons
+					sf[0][i].setEnabled(false);
+				}
+				
+				if ( currentTurn == 1 ) { // update scoreboard
+					VG_GUI_LocalFriend.redScore++;
+					VG_GUI_LocalFriend.redScoreLabel.setText(""+VG_GUI_LocalFriend.redScore);
+					VG_GUI_LocalFriend.redScoreLabel.setSize(VG_GUI_LocalFriend.redScoreLabel.getPreferredSize().width, VG_GUI_LocalFriend.redScoreLabel.getPreferredSize().height); // optimize size to show complete text
+				} else {
+					VG_GUI_LocalFriend.yellowScore++;
+					VG_GUI_LocalFriend.yellowScoreLabel.setText(""+VG_GUI_LocalFriend.yellowScore);
+					VG_GUI_LocalFriend.yellowScoreLabel.setSize(VG_GUI_LocalFriend.yellowScoreLabel.getPreferredSize().width, VG_GUI_LocalFriend.yellowScoreLabel.getPreferredSize().height);
+				}
+			}
 			
 			if ( currentTurn == 1 ) { // change current turn, if red
 				currentTurn = 2;
