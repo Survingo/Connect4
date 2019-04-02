@@ -122,13 +122,13 @@ public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 				}
 				
 				if ( currentTurn == 1 ) { // update scoreboard
-					VG_GUI_LocalFriend.redScore++;
-					VG_GUI_LocalFriend.redScoreLabel.setText(""+VG_GUI_LocalFriend.redScore);
-					VG_GUI_LocalFriend.redScoreLabel.setSize(VG_GUI_LocalFriend.redScoreLabel.getPreferredSize().width, VG_GUI_LocalFriend.redScoreLabel.getPreferredSize().height); // optimize size to show complete text
+					redScore++;
+					redScoreLabel.setText(""+redScore);
+					redScoreLabel.setSize(redScoreLabel.getPreferredSize().width, redScoreLabel.getPreferredSize().height); // optimize size to show complete text
 				} else {
-					VG_GUI_LocalFriend.yellowScore++;
-					VG_GUI_LocalFriend.yellowScoreLabel.setText(""+VG_GUI_LocalFriend.yellowScore);
-					VG_GUI_LocalFriend.yellowScoreLabel.setSize(VG_GUI_LocalFriend.yellowScoreLabel.getPreferredSize().width, VG_GUI_LocalFriend.yellowScoreLabel.getPreferredSize().height);
+					yellowScore++;
+					yellowScoreLabel.setText(""+yellowScore);
+					yellowScoreLabel.setSize(yellowScoreLabel.getPreferredSize().width, yellowScoreLabel.getPreferredSize().height);
 				}
 			}
 			
