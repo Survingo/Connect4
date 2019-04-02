@@ -31,8 +31,11 @@ public class English {
 		map.put("CONFIRM_LEAVE", "Are you sure that you want to leave the game? You will be redirected to the main menu.");
 		map.put("RESTART_BUTTON", "Restart");
 		map.put("UPDATE_AVAILABLE", "A new update for the game is available! Click <a href=\"https://github.com/Survingo/Connect4/releases\"> here</a> to download it.");
+		
+		// Errors
 		map.put("FEATURE_UNAVAILABLE", "This feature is not available, yet! You can check for updates in the official GitHub Repository.");
-		map.put("FEATURE_NOT_COMPLETE", "This feature is still in development and not completely done. " + "If you encounter any bugs be sure to report them in the official GitHub Repository in the issues section.");
+		map.put("FEATURE_NOT_COMPLETE", "This feature is still in development and not completely done. If you encounter any bugs be sure to report them in the official GitHub Repository in the issues section.");
+		map.put("NIMBUS_LAF_ERROR", "An error occured while setting the Nimbus Look and Feel. This program is optimized for the Nimbus Look and Feel. Visiual bugs may appear now. Error code: ");
 		
 		// Scoreboard
 		map.put("SB_TITLE", "Scoreboard");

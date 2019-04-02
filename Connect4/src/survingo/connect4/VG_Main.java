@@ -127,13 +127,17 @@ public class VG_Main extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
 		
+		Lang.init(); // initiate language
+		
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 		} catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(
+					null,
+					Lang.get("NIMBUS_LAF_ERROR") + e.getClass().getSimpleName(),
+					Lang.get("TITLE"),
+					JOptionPane.ERROR_MESSAGE);
 		}
-		
-		Lang.init(); // initiate language
 		
 		// Initiate images
 		redIcon = setImage("utils/VG_Red.png", 90, 90);
