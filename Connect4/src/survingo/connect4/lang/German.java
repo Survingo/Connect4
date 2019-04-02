@@ -33,8 +33,8 @@ public class German {
 		map.put("UPDATE_AVAILABLE", "Ein neues Update ist verfügbar! Klicke <a href=\"https://github.com/Survingo/Connect4/releases\"> hier</a>, um es herunterzuladen.");
 		
 		// Errors
-		map.put("FEATURE_UNAVAILABLE", "Diese Funktion ist noch nicht erhältlich! Suche nach Aktualisierungen auf der offiziellen GitHub Resporitory.");
-		map.put("FEATURE_NOT_COMPLETE", "Diese Funktion befindet sich noch");
+		map.put("FEATURE_UNAVAILABLE", "Diese Funktion ist leider noch nicht verfügbar! Sie können nach Aktualisierungen im offiziellen GitHub Resporitory suchen.");
+		map.put("FEATURE_NOT_COMPLETE", "Diese Funktion befindet sich noch in einen frühen Entwicklungsstadium. Sollte Ihnen Fehler unterlaufen melden Sie diese bitte im GitHub Repository unter der  \"Issues\"-Sektion.");
 		map.put("NIMBUS_LAF_ERROR", "Ein Fehler ist aufgetreten während des Festlegen des Nimbus Look and Feels. Das Programm ist optimiert für das Nimbus Look and Feel. Visuelle Fehler könnten nun auftreten. Fehlercode: ");
 		
 		// Scoreboard

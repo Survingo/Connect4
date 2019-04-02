@@ -34,7 +34,7 @@ public class English {
 		
 		// Errors
 		map.put("FEATURE_UNAVAILABLE", "This feature is not available, yet! You can check for updates in the official GitHub Repository.");
-		map.put("FEATURE_NOT_COMPLETE", "This feature is still in development and not completely done. If you encounter any bugs be sure to report them in the official GitHub Repository in the issues section.");
+		map.put("FEATURE_NOT_COMPLETE", "This feature is still in development and not completely done. If you encounter any bugs please be sure to report them to the official GitHub Repository in the issues section.");
 		map.put("NIMBUS_LAF_ERROR", "An error occured while setting the Nimbus Look and Feel. This program is optimized for the Nimbus Look and Feel. Visiual bugs may appear now. Error code: ");
 		
 		// Scoreboard
