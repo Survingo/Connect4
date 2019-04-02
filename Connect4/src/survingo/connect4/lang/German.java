@@ -27,6 +27,9 @@ public class German {
 		map.put("TITLE_AI_EASY", "Spieler gegen KI - Einfach");
 		map.put("TITLE_AI_HARD", "Spieler gegen KI - Schwer");
 		
+		map.put("MENU_LANGUAGE", "Sprache");
+		map.put("MENU_LANG_CHANGED", "Um die Änderung der Sprache zu übernehmen müssen Sie das Programm neustarten.");
+		
 		map.put("CONFIRM_EXIT", "Sind Sie sich sicher, dass Sie das Programm schließen möchten?");
 		map.put("CONFIRM_LEAVE", "Sind Sie sich sicher, dass Sie das Spiel verlassen wollen? Sie werden zum Hauptmenü zurückgeleitet.");
 		map.put("RESTART_BUTTON", "Neustarten");

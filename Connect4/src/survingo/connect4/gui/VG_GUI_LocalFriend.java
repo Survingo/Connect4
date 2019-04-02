@@ -21,11 +21,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButtonMenuItem;
 
 import survingo.connect4.VG_EventHandler;
 import survingo.connect4.VG_Main;
@@ -45,8 +50,32 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 	JLabel					redScoreboard		= new JLabel();
 	JLabel					yellowScoreboard	= new JLabel();
 	VG_Button[][]			sf					= new VG_Button [6] [7]; // create game field using multidimensional array = 6 rows (y-axis) / 7 columns (x-axis)
+	JRadioButtonMenuItem	eng					= new JRadioButtonMenuItem("English"),
+							deu					= new JRadioButtonMenuItem("Deutsch");
 	
 	public VG_GUI_LocalFriend () {
+		// initiate menu
+		JMenuBar menuBar = new JMenuBar();
+		JMenu lang = new JMenu(Lang.get("MENU_LANGUAGE"));
+		ButtonGroup langs = new ButtonGroup();
+		
+		eng.addActionListener(this);
+		langs.add(eng);
+		lang.add(eng);
+		
+		deu.addActionListener(this);
+		langs.add(deu);
+		lang.add(deu);
+		
+		if (VG_Main.prop.getProperty("lang", "eng").equals("eng")) {
+			langs.setSelected(eng.getModel(), true);
+		} else if (VG_Main.prop.getProperty("lang").equals("deu")) {
+			langs.setSelected(deu.getModel(), true);
+		}
+		menuBar.add(lang);
+		setJMenuBar(menuBar);
+		
+		
 		VG_GUI.initUI(scoreboardLabel, redScoreboard, yellowScoreboard, redScoreLabel, yellowScoreLabel, currentPlayer, restartButton, this);
 		
 		getContentPane().add(scoreboardLabel);
@@ -56,6 +85,7 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 		getContentPane().add(yellowScoreLabel);
 		getContentPane().add(currentPlayer);
 		getContentPane().add(restartButton);
+		
 		
 		JPanel gamefield = new JPanel(); // seperate JPanel for game field
 		gamefield.setSize(700, 600);
@@ -104,9 +134,26 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 	}
 	
 	public void actionPerformed (ActionEvent e) {
-		if (e.getSource() == restartButton) {
+		if (e.getSource() == restartButton) { // restart button
 			VG_EventHandler.restart(sf);
-		} else {
+			
+		} else if (e.getSource() == eng) { // English menu item
+			VG_Main.setProperty("lang", "eng");
+			JOptionPane.showMessageDialog(
+					this,
+					Lang.get("MENU_LANG_CHANGED"),
+					Lang.get("TITLE"),
+					JOptionPane.WARNING_MESSAGE);
+			
+		} else if (e.getSource() == deu) { // German menu item
+			VG_Main.setProperty("lang", "deu");
+			JOptionPane.showMessageDialog(
+					this,
+					Lang.get("MENU_LANG_CHANGED"),
+					Lang.get("TITLE"),
+					JOptionPane.WARNING_MESSAGE);
+			
+		} else if (e.getSource().getClass().equals("VG_Button")) { // game field button
 			VG_GUI.setButton(sf, (VG_Button) e.getSource(), currentTurn); // set button using that function (drop from top to bottom)
 			
 			if ( VG_EventHandler.won(sf, currentTurn) ) { // check if someone has won

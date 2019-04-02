@@ -23,6 +23,7 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
@@ -98,7 +99,7 @@ public class VG_Main extends JFrame implements ActionListener {
 	}
 	
 	public static void loadProperties () throws IOException {
-		FileInputStream in = new FileInputStream( System.getProperty("user.dir") + "/connect4.properties");
+		FileInputStream in = new FileInputStream( System.getProperty("user.dir") + "/connect4.properties" );
 		prop.load(in);
 		in.close();
 		if (!prop.getProperty("version", "null").equals(VER)) {
@@ -108,6 +109,17 @@ public class VG_Main extends JFrame implements ActionListener {
 					"Connect Four",
 					JOptionPane.WARNING_MESSAGE);
 			createProperties();
+		}
+	}
+	
+	public static void setProperty (String key, String value) {
+		try { // shortcut to change values of properties file
+			FileOutputStream out = new FileOutputStream( System.getProperty("user.dir") + "/connect4.properties" );
+			prop.setProperty(key, value);
+			prop.store(out, null); // this will cause the comments in the properties file to disappear, I don't plan to change that due to lack of ressources
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

@@ -27,6 +27,9 @@ public class English {
 		map.put("TITLE_AI_EASY", "Player vs. AI - Easy");
 		map.put("TITLE_AI_HARD", "Player vs. AI - Hard");
 		
+		map.put("MENU_LANGUAGE", "Language");
+		map.put("MENU_LANG_CHANGED", "In order to change the language you will have to restart the program.");
+		
 		map.put("CONFIRM_EXIT", "Are you sure that you want to close the program?");
 		map.put("CONFIRM_LEAVE", "Are you sure that you want to leave the game? You will be redirected to the main menu.");
 		map.put("RESTART_BUTTON", "Restart");
