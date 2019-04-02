@@ -27,10 +27,11 @@ public class German {
 		map.put("TITLE_AI_EASY", "Spieler gegen KI - Einfach");
 		map.put("TITLE_AI_HARD", "Spieler gegen KI - Schwer");
 		
-		
+		map.put("CONFIRM_EXIT", "Sind Sie sich sicher, dass Sie das Programm schließen möchten?");
+		map.put("CONFIRM_LEAVE", "Sind Sie sich sicher, dass Sie das Spiel verlassen wollen? Sie werden zum Hauptmenü zurückgeleitet.");
 		map.put("RESTART_BUTTON", "Neustarten");
 		map.put("UPDATE_AVAILABLE", "Ein neues Update ist verfügbar! Klicke <a href=\"https://github.com/Survingo/Connect4/releases\"> hier</a>, um es herunterzuladen.");
-		map.put("PROPERTIES_NOT_UP_TO_DATE", "Die Version der Eigenschaftendatei ist nicht mit der Version des Programmes kompatibel. Ein neue Datei wird nun generiert...");
+		map.put("FEATURE_UNAVAILABLE", "Diese Funktion ist noch nicht erhältlich! Suche nach Aktualisierungen auf der offiziellen GitHub Resporitory.");
 		
 		// Scoreboard
 		map.put("SB_TITLE", "Scoreboard");

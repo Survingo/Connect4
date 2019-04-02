@@ -18,8 +18,11 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
@@ -44,7 +47,7 @@ public class VG_Main extends JFrame implements ActionListener {
 	public static int			WIDTH			= 1100;
 	public static int			HEIGHT			= 650;
 	public static ImageIcon		redIcon, yellowIcon;
-	public static JFrame		mainFrame, localPVP, AIEasy;
+	public static JFrame		mainFrame, gameFrame;
 	String[]					modes 			= {Lang.get("TITLE_LOCAL_PVP"),
 												Lang.get("TITLE_ONLINE_PVP"),
 												Lang.get("TITLE_AI_EASY"),
@@ -53,11 +56,11 @@ public class VG_Main extends JFrame implements ActionListener {
 	public static Properties	prop			= new Properties();
 	
 	// function to scale images
-	public static ImageIcon setImage ( String path, int width, int height ) {
+	public static ImageIcon setImage (String path, int width, int height) {
 		URL IconURL = VG_Main.class.getResource(path);
 		
 		if ( IconURL != null ) { // check if image exists
-			ImageIcon icon = new ImageIcon( IconURL );
+			ImageIcon icon = new ImageIcon(IconURL);
 			icon.setImage( icon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH) );
 			return icon;
 		} else { // image does not exist -> return new dummy
@@ -94,11 +97,34 @@ public class VG_Main extends JFrame implements ActionListener {
 		}
 	}
 	
+	public static void loadProperties () throws IOException {
+		FileInputStream in = new FileInputStream( System.getProperty("user.dir") + "/connect4.properties");
+		prop.load(in);
+		in.close();
+		if (!prop.getProperty("version", "null").equals(VER)) {
+			JOptionPane.showMessageDialog(
+					null,
+					"The version of the properties file is not compatible with the program. Creating a new file now...",
+					"Connect Four",
+					JOptionPane.WARNING_MESSAGE);
+			createProperties();
+		}
+	}
+	
 	// main function
 	public static void main ( String[] args ) {
-		File f = new File(System.getProperty("user.dir") + "/connect4.properties");
-		if (!f.exists()) { // no properties file exists -> create one
+		
+		try {
+			loadProperties();
+		} catch (FileNotFoundException e) {
 			createProperties();
+			try {
+				loadProperties();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		try {
@@ -107,22 +133,11 @@ public class VG_Main extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
 		
-		try {
-			FileInputStream input = new FileInputStream( System.getProperty("user.dir") + "/connect4.properties");
-			prop.load(input);
-			input.close();
-			Lang.init();
-			if (!prop.getProperty("version", "null").equals(VER)) {
-				JOptionPane.showMessageDialog(null, Lang.get("PROPERTIES_NOT_UP_TO_DATE"));
-				createProperties();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		Lang.init(); // initiate language
 		
 		// Initiate images
-		redIcon = setImage ( "utils/VG_Red.png", 90, 90 );
-		yellowIcon = setImage ( "utils/VG_Yellow.png", 90, 90 );
+		redIcon = setImage("utils/VG_Red.png", 90, 90);
+		yellowIcon = setImage("utils/VG_Yellow.png", 90, 90);
 		
 		mainFrame = new VG_Main();
 		
@@ -164,7 +179,20 @@ public class VG_Main extends JFrame implements ActionListener {
 		versionLabel.setLocation( WIDTH-versionLabel.getSize().width-10, new Double(HEIGHT*0.93).intValue() );
 		getContentPane().add(versionLabel);
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener( new WindowAdapter() {
+			public void windowClosing (WindowEvent e) {
+				JFrame frame = (JFrame) e.getSource();
+				int confirm = JOptionPane.showConfirmDialog(
+						frame,
+						Lang.get("CONFIRM_EXIT"),
+						Lang.get("TITLE"),
+						JOptionPane.YES_NO_OPTION);
+				if (confirm == JOptionPane.YES_OPTION) {
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
+			}
+		});
 		setTitle( Lang.get("TITLE") );
 		getContentPane().setPreferredSize( new Dimension(WIDTH, HEIGHT) );
 		getContentPane().setLayout(null);
@@ -176,27 +204,34 @@ public class VG_Main extends JFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent e) {
 		if (gO.getSelectedItem().equals(modes[0])) {
-			if (localPVP == null) {
-				localPVP = new VG_GUI_LocalFriend();
-			} else {
-				localPVP.setVisible(true);
-			}
+			gameFrame = new VG_GUI_LocalFriend();
+			mainFrame.setVisible(false);
 		}
 		
 		if (gO.getSelectedItem().equals(modes[1])) {
-			JOptionPane.showMessageDialog(mainFrame, "This feature is not available yet!");
+			JOptionPane.showMessageDialog(
+					mainFrame,
+					Lang.get("FEATURE_UNAVAILABLE"),
+					Lang.get("TITLE"),
+					JOptionPane.ERROR_MESSAGE);
 		}
 		
 		if (gO.getSelectedItem().equals(modes[2])) {
-			if (AIEasy == null) {
-				AIEasy = new VG_GUI_LocalAI_Easy();
-			} else {
-				AIEasy.setVisible(true);
-			}
+			gameFrame = new VG_GUI_LocalAI_Easy();
+			mainFrame.setVisible(false);
+			JOptionPane.showMessageDialog(
+					mainFrame,
+					Lang.get("FEATURE_NOT_COMPLETE"),
+					Lang.get("TITLE"),
+					JOptionPane.ERROR_MESSAGE);
 		}
 		
 		if (gO.getSelectedItem().equals(modes[3])) {
-			JOptionPane.showMessageDialog(mainFrame, "This feature is not available yet!");
+			JOptionPane.showMessageDialog(
+					mainFrame,
+					Lang.get("FEATURE_UNAVAILABLE"),
+					Lang.get("TITLE"),
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	

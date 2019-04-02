@@ -69,7 +69,11 @@ public class Updater {
 			editorpane.setEditable(false);
 			editorpane.setBackground(label.getBackground());
 			
-			JOptionPane.showMessageDialog(null, editorpane);
+			JOptionPane.showMessageDialog(
+					null,
+					editorpane,
+					Lang.get("TITLE"),
+					JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	

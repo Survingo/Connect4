@@ -18,10 +18,13 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import survingo.connect4.VG_EventHandler;
@@ -75,7 +78,22 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 			e.printStackTrace();
 		}
 		
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		addWindowListener( new WindowAdapter() {
+			public void windowClosing (WindowEvent e) {
+				JFrame frame = (JFrame) e.getSource();
+				int confirm = JOptionPane.showConfirmDialog(
+						frame,
+						Lang.get("CONFIRM_LEAVE"),
+						Lang.get("TITLE"),
+						JOptionPane.YES_NO_OPTION);
+				if (confirm == JOptionPane.YES_OPTION) {
+					VG_Main.mainFrame.setLocationRelativeTo(frame);
+					VG_Main.mainFrame.setVisible(true);
+					frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				}
+			}
+		});
 		setTitle( Lang.get("TITLE") + " - " + Lang.get("TITLE_LOCAL_PVP") );
 		getContentPane().setPreferredSize(new Dimension(VG_Main.WIDTH, VG_Main.HEIGHT));
 		getContentPane().setLayout(null);
