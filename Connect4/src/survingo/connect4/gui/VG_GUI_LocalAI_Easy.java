@@ -60,6 +60,7 @@ public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 							restartItem			= new JMenuItem(Lang.get("RESTART_BUTTON")),
 							mainMenuItem		= new JMenuItem(Lang.get("MENU_FILE_MENU")),
 							exitItem			= new JMenuItem(Lang.get("MENU_FILE_EXIT"));
+	boolean					running				= true;
 	
 	public VG_GUI_LocalAI_Easy () {
 		// initiate menu
@@ -160,6 +161,7 @@ public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 			VG_GUI.setButton(sf, (VG_Button) e.getSource(), currentTurn); // set button using that function (drop from top to bottom)
 			
 			if ( VG_EventHandler.won(sf, currentTurn) ) { // check if someone has won
+				running = false;
 				for ( int i = 0; i < 7; i++ ) { // Deactivate first row of buttons
 					sf[0][i].setEnabled(false);
 				}
@@ -188,7 +190,19 @@ public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 			timer.schedule(task, 3000);
 			
 		} else if (e.getSource() == restartButton) { // restart button
-			VG_EventHandler.restart(sf);
+			if (running) {
+				int confirm = JOptionPane.showConfirmDialog(
+						this,
+						Lang.get("CONFIRM_RESTART"),
+						Lang.get("TITLE"),
+						JOptionPane.YES_NO_OPTION);
+				if (confirm == JOptionPane.YES_OPTION) {
+					VG_EventHandler.restart(sf);
+				}
+			} else {
+				VG_EventHandler.restart(sf);
+				running = true;
+			}
 			
 		} else if (e.getSource() == eng) { // English menu item
 			VG_Main.setProperty("lang", "eng");
@@ -206,17 +220,29 @@ public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 					Lang.get("TITLE"),
 					JOptionPane.WARNING_MESSAGE);
 			
-		} else if (e.getSource() == saveItem) {
+		} else if (e.getSource() == saveItem) { // File menu - save item
 			JOptionPane.showMessageDialog(
 					this,
 					Lang.get("FEATURE_UNAVAILABLE"),
 					Lang.get("TITLE"),
 					JOptionPane.ERROR_MESSAGE);
 			
-		} else if (e.getSource() == restartItem) {
-			VG_EventHandler.restart(sf);
+		} else if (e.getSource() == restartItem) { // File menu - restart item
+			if (running) {
+				int confirm = JOptionPane.showConfirmDialog(
+						this,
+						Lang.get("CONFIRM_RESTART"),
+						Lang.get("TITLE"),
+						JOptionPane.YES_NO_OPTION);
+				if (confirm == JOptionPane.YES_OPTION) {
+					VG_EventHandler.restart(sf);
+				}
+			} else {
+				VG_EventHandler.restart(sf);
+				running = true;
+			}
 			
-		} else if (e.getSource() == mainMenuItem) {
+		} else if (e.getSource() == mainMenuItem) { // File menu - return to menu item
 			int confirm = JOptionPane.showConfirmDialog(
 					this,
 					Lang.get("CONFIRM_LEAVE"),
@@ -228,7 +254,7 @@ public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 				this.dispose();
 			}
 			
-		} else if (e.getSource() == exitItem) {
+		} else if (e.getSource() == exitItem) { // File menu - exit item
 			int confirm = JOptionPane.showConfirmDialog(
 					this,
 					Lang.get("CONFIRM_EXIT"),
