@@ -29,6 +29,10 @@ public class German {
 		
 		map.put("MENU_LANGUAGE", "Sprache");
 		map.put("MENU_LANG_CHANGED", "Um die Änderung der Sprache zu übernehmen müssen Sie das Programm neustarten.");
+		map.put("MENU_FILE", "Datei");
+		map.put("MENU_FILE_SAVE", "Scoreboard speichern");
+		map.put("MENU_FILE_MENU", "Zum Hauptmenü zurückkehren");
+		map.put("MENU_FILE_EXIT", "Schließen");
 		
 		map.put("CONFIRM_EXIT", "Sind Sie sich sicher, dass Sie das Programm schließen möchten?");
 		map.put("CONFIRM_LEAVE", "Sind Sie sich sicher, dass Sie das Spiel verlassen wollen? Sie werden zum Hauptmenü zurückgeleitet.");

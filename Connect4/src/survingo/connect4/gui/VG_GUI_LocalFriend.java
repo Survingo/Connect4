@@ -28,9 +28,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JSeparator;
 
 import survingo.connect4.VG_EventHandler;
 import survingo.connect4.VG_Main;
@@ -52,10 +54,26 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 	VG_Button[][]			sf					= new VG_Button [6] [7]; // create game field using multidimensional array = 6 rows (y-axis) / 7 columns (x-axis)
 	JRadioButtonMenuItem	eng					= new JRadioButtonMenuItem("English"),
 							deu					= new JRadioButtonMenuItem("Deutsch");
+	JMenuItem				saveItem			= new JMenuItem(Lang.get("MENU_FILE_SAVE")),
+							restartItem			= new JMenuItem(Lang.get("RESTART_BUTTON")),
+							mainMenuItem		= new JMenuItem(Lang.get("MENU_FILE_MENU")),
+							exitItem			= new JMenuItem(Lang.get("MENU_FILE_EXIT"));
 	
 	public VG_GUI_LocalFriend () {
 		// initiate menu
 		JMenuBar menuBar = new JMenuBar();
+		JMenu file = new JMenu(Lang.get("MENU_FILE"));
+		saveItem.addActionListener(this);
+		file.add(saveItem);
+		restartItem.addActionListener(this);
+		file.add(restartItem);
+		file.add(new JSeparator());
+		mainMenuItem.addActionListener(this);
+		file.add(mainMenuItem);
+		exitItem.addActionListener(this);
+		file.add(exitItem);
+		menuBar.add(file);
+		
 		JMenu lang = new JMenu(Lang.get("MENU_LANGUAGE"));
 		ButtonGroup langs = new ButtonGroup();
 		
@@ -134,26 +152,7 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 	}
 	
 	public void actionPerformed (ActionEvent e) {
-		if (e.getSource() == restartButton) { // restart button
-			VG_EventHandler.restart(sf);
-			
-		} else if (e.getSource() == eng) { // English menu item
-			VG_Main.setProperty("lang", "eng");
-			JOptionPane.showMessageDialog(
-					this,
-					Lang.get("MENU_LANG_CHANGED"),
-					Lang.get("TITLE"),
-					JOptionPane.WARNING_MESSAGE);
-			
-		} else if (e.getSource() == deu) { // German menu item
-			VG_Main.setProperty("lang", "deu");
-			JOptionPane.showMessageDialog(
-					this,
-					Lang.get("MENU_LANG_CHANGED"),
-					Lang.get("TITLE"),
-					JOptionPane.WARNING_MESSAGE);
-			
-		} else if (e.getSource().getClass().equals("VG_Button")) { // game field button
+		if (e.getSource().getClass().getSimpleName().equals("VG_Button")) { // game field button
 			VG_GUI.setButton(sf, (VG_Button) e.getSource(), currentTurn); // set button using that function (drop from top to bottom)
 			
 			if ( VG_EventHandler.won(sf, currentTurn) ) { // check if someone has won
@@ -181,6 +180,58 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 				currentPlayer.setText( Lang.get("SB_CURTURN_P1") );
 				currentPlayer.setForeground( new Color(209, 73, 73) );
 			}
+			
+		} else if (e.getSource() == restartButton) { // restart button
+			VG_EventHandler.restart(sf);
+			
+		} else if (e.getSource() == eng) { // English menu item
+			VG_Main.setProperty("lang", "eng");
+			JOptionPane.showMessageDialog(
+					this,
+					Lang.get("MENU_LANG_CHANGED"),
+					Lang.get("TITLE"),
+					JOptionPane.WARNING_MESSAGE);
+			
+		} else if (e.getSource() == deu) { // German menu item
+			VG_Main.setProperty("lang", "deu");
+			JOptionPane.showMessageDialog(
+					this,
+					Lang.get("MENU_LANG_CHANGED"),
+					Lang.get("TITLE"),
+					JOptionPane.WARNING_MESSAGE);
+			
+		} else if (e.getSource() == saveItem) {
+			JOptionPane.showMessageDialog(
+					this,
+					Lang.get("FEATURE_UNAVAILABLE"),
+					Lang.get("TITLE"),
+					JOptionPane.ERROR_MESSAGE);
+			
+		} else if (e.getSource() == restartItem) {
+			VG_EventHandler.restart(sf);
+			
+		} else if (e.getSource() == mainMenuItem) {
+			int confirm = JOptionPane.showConfirmDialog(
+					this,
+					Lang.get("CONFIRM_LEAVE"),
+					Lang.get("TITLE"),
+					JOptionPane.YES_NO_OPTION);
+			if (confirm == JOptionPane.YES_OPTION) {
+				VG_Main.mainFrame.setLocationRelativeTo(this);
+				VG_Main.mainFrame.setVisible(true);
+				this.dispose();
+			}
+			
+		} else if (e.getSource() == exitItem) {
+			int confirm = JOptionPane.showConfirmDialog(
+					this,
+					Lang.get("CONFIRM_EXIT"),
+					Lang.get("TITLE"),
+					JOptionPane.YES_NO_OPTION);
+			if (confirm == JOptionPane.YES_OPTION) {
+				System.exit(0);
+			}
+			
 		}
 		
 	}

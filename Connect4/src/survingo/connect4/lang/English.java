@@ -29,6 +29,10 @@ public class English {
 		
 		map.put("MENU_LANGUAGE", "Language");
 		map.put("MENU_LANG_CHANGED", "In order to change the language you will have to restart the program.");
+		map.put("MENU_FILE", "File");
+		map.put("MENU_FILE_SAVE", "Save scoreboard");
+		map.put("MENU_FILE_MENU", "Return to Main Menu");
+		map.put("MENU_FILE_EXIT", "Exit");
 		
 		map.put("CONFIRM_EXIT", "Are you sure that you want to close the program?");
 		map.put("CONFIRM_LEAVE", "Are you sure that you want to leave the game? You will be redirected to the main menu.");
