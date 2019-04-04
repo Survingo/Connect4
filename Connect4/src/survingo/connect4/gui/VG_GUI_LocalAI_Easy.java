@@ -307,7 +307,7 @@ public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 		boolean loop = true;
 		
 		do {
-			random = r.nextInt(6);
+			random = r.nextInt(7);
 			if ( sf[0][random].isEnabled() ) {
 				VG_GUI.setButton(sf, sf[0][random], currentTurn);
 				loop = false;
