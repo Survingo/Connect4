@@ -42,7 +42,7 @@ public class German {
 		
 		// Errors
 		map.put("FEATURE_UNAVAILABLE", "Diese Funktion ist leider noch nicht verfügbar! Sie können nach Aktualisierungen im offiziellen GitHub Resporitory suchen.");
-		map.put("FEATURE_NOT_COMPLETE", "Diese Funktion befindet sich noch in einen frühen Entwicklungsstadium. Sollte Ihnen Fehler unterlaufen melden Sie diese bitte im GitHub Repository unter der  \"Issues\"-Sektion.");
+		map.put("FEATURE_NOT_COMPLETE", "Diese Funktion befindet sich noch in einen frühen Entwicklungsstadium. Sollten Ihnen Fehler unterlaufen melden Sie diese bitte im GitHub Repository unter der  \"Issues\"-Sektion.");
 		map.put("NIMBUS_LAF_ERROR", "Ein Fehler ist aufgetreten während des Festlegen des Nimbus Look and Feels. Das Programm ist optimiert für das Nimbus Look and Feel. Visuelle Fehler könnten nun auftreten. Fehlercode: ");
 		
 		// Scoreboard
