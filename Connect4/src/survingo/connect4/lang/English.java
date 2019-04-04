@@ -49,8 +49,9 @@ public class English {
 		map.put("SB_TITLE", "Scoreboard");
 		map.put("SB_SCORE_RED", "Score of player 1 (Red) - ");
 		map.put("SB_SCORE_YELLOW", "Score of player 2 (Yellow) - ");
-		map.put("SB_CURTURN_P1", "It is player 1's turn.");
-		map.put("SB_CURTURN_P2", "It is player 2's turn.");
+		map.put("SB_CURTURN", "Current Turn:");
+		map.put("SB_CURTURN_P1", "Player 1");
+		map.put("SB_CURTURN_P2", "Player 2");
 		
 		return map;
 	}

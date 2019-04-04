@@ -49,8 +49,9 @@ public class German {
 		map.put("SB_TITLE", "Scoreboard");
 		map.put("SB_SCORE_RED", "Punktestand von Spieler 1 (Rot) - ");
 		map.put("SB_SCORE_YELLOW", "Punktestand von Spieler 2 (Gelb) - ");
-		map.put("SB_CURTURN_P1", "Spieler 1 ist am Zug.");
-		map.put("SB_CURTURN_P2", "Spieler 2 ist am Zug.");
+		map.put("SB_CURTURN", "Aktuell am Zug:");
+		map.put("SB_CURTURN_P1", "Spieler 1");
+		map.put("SB_CURTURN_P2", "Spieler 2");
 		
 		return map;
 	}

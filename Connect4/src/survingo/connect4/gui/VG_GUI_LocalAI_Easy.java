@@ -43,16 +43,17 @@ import survingo.connect4.utils.VG_Button;
 
 public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 	
-	public static int		currentTurn			= 1; // 1 - red, 2 - yellow
-	public static int		redScore 			= 0, // score counter
+	int						currentTurn			= 1, // 1 - red, 2 - yellow
+							redScore 			= 0, // score counter
 							yellowScore			= 0;
-	JButton					restartButton		= new JButton( Lang.get("RESTART_BUTTON") );
-	public static JLabel	currentPlayer		= new JLabel( Lang.get("SB_CURTURN_P1") );
-	public static JLabel	redScoreLabel 		= new JLabel ( "0" ),
-							yellowScoreLabel	= new JLabel ( "0" );
-	JLabel					scoreboardLabel		= new JLabel();
-	JLabel					redScoreboard		= new JLabel();
-	JLabel					yellowScoreboard	= new JLabel();
+	JButton					restartButton		= new JButton(Lang.get("RESTART_BUTTON"));
+	JLabel					curTurn				= new JLabel(Lang.get("SB_CURTURN")),
+							currentPlayer		= new JLabel(Lang.get("SB_CURTURN_P1")),
+							redScoreLabel 		= new JLabel("0"),
+							yellowScoreLabel	= new JLabel("0"),
+							scoreboardLabel		= new JLabel(),
+							redScoreboard		= new JLabel(),
+							yellowScoreboard	= new JLabel();
 	VG_Button[][]			sf					= new VG_Button [6] [7]; // create game field using multidimensional array = 6 rows (y-axis) / 7 columns (x-axis)
 	JRadioButtonMenuItem	eng					= new JRadioButtonMenuItem("English"),
 							deu					= new JRadioButtonMenuItem("Deutsch");
@@ -96,13 +97,14 @@ public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 		menuBar.add(lang);
 		setJMenuBar(menuBar);
 		
-		VG_GUI.initUI(scoreboardLabel, redScoreboard, yellowScoreboard, redScoreLabel, yellowScoreLabel, currentPlayer, restartButton, this);
+		VG_GUI.initUI(scoreboardLabel, redScoreboard, yellowScoreboard, redScoreLabel, yellowScoreLabel, curTurn, currentPlayer, restartButton, this);
 		
 		getContentPane().add(scoreboardLabel);
 		getContentPane().add(redScoreboard);
 		getContentPane().add(yellowScoreboard);
 		getContentPane().add(redScoreLabel);
 		getContentPane().add(yellowScoreLabel);
+		getContentPane().add(curTurn);
 		getContentPane().add(currentPlayer);
 		getContentPane().add(restartButton);
 		
@@ -289,13 +291,13 @@ public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 			}
 			
 			if ( currentTurn == 1 ) { // update scoreboard
-				VG_GUI_LocalFriend.redScore++;
-				VG_GUI_LocalFriend.redScoreLabel.setText(""+VG_GUI_LocalFriend.redScore);
-				VG_GUI_LocalFriend.redScoreLabel.setSize(VG_GUI_LocalFriend.redScoreLabel.getPreferredSize().width, VG_GUI_LocalFriend.redScoreLabel.getPreferredSize().height); // optimize size to show complete text
+				redScore++;
+				redScoreLabel.setText(""+redScore);
+				redScoreLabel.setSize(redScoreLabel.getPreferredSize().width, redScoreLabel.getPreferredSize().height); // optimize size to show complete text
 			} else {
-				VG_GUI_LocalFriend.yellowScore++;
-				VG_GUI_LocalFriend.yellowScoreLabel.setText(""+VG_GUI_LocalFriend.yellowScore);
-				VG_GUI_LocalFriend.yellowScoreLabel.setSize(VG_GUI_LocalFriend.yellowScoreLabel.getPreferredSize().width, VG_GUI_LocalFriend.yellowScoreLabel.getPreferredSize().height);
+				yellowScore++;
+				yellowScoreLabel.setText(""+yellowScore);
+				yellowScoreLabel.setSize(yellowScoreLabel.getPreferredSize().width, yellowScoreLabel.getPreferredSize().height);
 			}
 		}
 		

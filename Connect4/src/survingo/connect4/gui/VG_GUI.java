@@ -13,6 +13,7 @@ See https://github.com/Survingo/Connect4/blob/master/LICENSE for full license de
 
 package survingo.connect4.gui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 
@@ -26,33 +27,44 @@ import survingo.connect4.utils.VG_Button;
 
 public class VG_GUI {
 	
-	public static void initUI (JLabel sL, JLabel rSB, JLabel ySB, JLabel rSL, JLabel ySL, JLabel curPl, JButton restart, ActionListener listener) {
-		sL.setFont(new Font("Liberation Sans", Font.PLAIN, 25));
+	public static void initUI (JLabel sL, JLabel rSB, JLabel ySB, JLabel rSL, JLabel ySL, JLabel curT, JLabel curPl, JButton restart, ActionListener listener) {
+		sL.setFont(new Font("Arial", Font.PLAIN, 45));
+		sL.setForeground(Color.GRAY.darker());
 		sL.setText( Lang.get("SB_TITLE") );
 		sL.setSize( sL.getPreferredSize().width, sL.getPreferredSize().height );
-		sL.setLocation(850, 50);
+		sL.setLocation(750, 25);
 		
-		rSB.setFont(new Font("Liberation Sans", Font.PLAIN, 13));
+		rSB.setFont(new Font("Arial", Font.PLAIN, 16));
+		rSB.setForeground(Color.GRAY.darker());
 		rSB.setText( Lang.get("SB_SCORE_RED") );
 		rSB.setSize( rSB.getPreferredSize().width, rSB.getPreferredSize().height );
-		rSB.setLocation(750, 100);
+		rSB.setLocation(750, 90);
 		
-		ySB.setFont(new Font("Liberation Sans", Font.PLAIN, 13));
+		ySB.setFont(new Font("Arial", Font.PLAIN, 16));
+		ySB.setForeground(Color.GRAY.darker());
 		ySB.setText( Lang.get("SB_SCORE_YELLOW") );
 		ySB.setSize( ySB.getPreferredSize().width, ySB.getPreferredSize().height );
-		ySB.setLocation(750, 150);
+		ySB.setLocation(750, 140);
 		
-		rSL.setFont(new Font("Liberation Sans", Font.PLAIN, 13));
+		rSL.setFont(new Font("Arial", Font.PLAIN, 16));
+		rSL.setForeground(Color.GRAY.darker());
 		rSL.setSize( rSL.getPreferredSize().width, rSL.getPreferredSize().height );
-		rSL.setLocation(1000, 100);
+		rSL.setLocation(1000, 90);
 		
-		ySL.setFont(new Font("Liberation Sans", Font.PLAIN, 13));
+		ySL.setFont(new Font("Arial", Font.PLAIN, 16));
+		ySL.setForeground(Color.GRAY.darker());
 		ySL.setSize ( ySL.getPreferredSize().width, ySL.getPreferredSize().height );
-		ySL.setLocation(1000, 150);
+		ySL.setLocation(1000, 140);
 		
-		curPl.setFont(new Font("Liberation Sans", Font.PLAIN, 25));
+		curT.setFont(new Font("Arial", Font.PLAIN, 45));
+		curT.setForeground(Color.GRAY.darker());
+		curT.setSize ( curT.getPreferredSize().width, curT.getPreferredSize().height );
+		curT.setLocation(750, 240);
+		
+		curPl.setFont(new Font("Arial", Font.PLAIN, 45));
+		curPl.setForeground(new Color(209, 73, 73));
 		curPl.setSize ( curPl.getPreferredSize().width, curPl.getPreferredSize().height );
-		curPl.setLocation(800, 300);
+		curPl.setLocation(750, 290);
 		
 		restart.setLocation(850, 400);
 		restart.setSize(100, 30);
