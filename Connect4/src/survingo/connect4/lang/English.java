@@ -35,6 +35,7 @@ public class English {
 		map.put("MENU_FILE_EXIT", "Exit");
 		
 		map.put("CONFIRM_EXIT", "Are you sure that you want to close the program?");
+		map.put("CONFIRM_RESTART", "Are you sure that you want to restart the current game? Game progress will not be saved.");
 		map.put("CONFIRM_LEAVE", "Are you sure that you want to leave the game? You will be redirected to the main menu.");
 		map.put("RESTART_BUTTON", "Restart");
 		map.put("UPDATE_AVAILABLE", "A new update for the game is available! Click <a href=\"https://github.com/Survingo/Connect4/releases\"> here</a> to download it.");

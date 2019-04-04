@@ -35,6 +35,7 @@ public class German {
 		map.put("MENU_FILE_EXIT", "Schließen");
 		
 		map.put("CONFIRM_EXIT", "Sind Sie sich sicher, dass Sie das Programm schließen möchten?");
+		map.put("CONFIRM_RESTART", "Sind Sie sich sicher, dass Sie das aktuelle Spiel neustarten wollen? Der Spielfortschritt wird nicht gespeichert.");
 		map.put("CONFIRM_LEAVE", "Sind Sie sich sicher, dass Sie das Spiel verlassen wollen? Sie werden zum Hauptmenü zurückgeleitet.");
 		map.put("RESTART_BUTTON", "Neustarten");
 		map.put("UPDATE_AVAILABLE", "Ein neues Update ist verfügbar! Klicke <a href=\"https://github.com/Survingo/Connect4/releases\"> hier</a>, um es herunterzuladen.");
