@@ -317,6 +317,7 @@ public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 		} while (loop);
 		
 		if ( VG_EventHandler.won(sf, currentTurn) ) { // check if someone has won
+			running = false;
 			for ( int i = 0; i < 7; i++ ) { // Deactivate first row of buttons
 				sf[0][i].setEnabled(false);
 			}
