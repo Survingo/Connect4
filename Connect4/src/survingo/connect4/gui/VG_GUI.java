@@ -93,7 +93,9 @@ public class VG_GUI {
 					sf [y] [b.getS()-1].setIcon( VG_Main.yellowIcon );
 					sf [y] [b.getS()-1].setDisabledIcon( VG_Main.yellowIcon );
 				}
-				sf [y] [b.getS()-1].setEnabled(false);
+				if (y == 0) {
+					sf [y] [b.getS()-1].setEnabled(false);
+				}
 				break; // stop loop
 			}
 		}
