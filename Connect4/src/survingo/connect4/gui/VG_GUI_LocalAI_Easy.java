@@ -39,6 +39,7 @@ import javax.swing.JSeparator;
 import survingo.connect4.VG_EventHandler;
 import survingo.connect4.VG_Main;
 import survingo.connect4.lang.Lang;
+import survingo.connect4.utils.Updater;
 import survingo.connect4.utils.VG_Button;
 
 public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
@@ -60,7 +61,10 @@ public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 	JMenuItem				saveItem			= new JMenuItem(Lang.get("MENU_FILE_SAVE")),
 							restartItem			= new JMenuItem(Lang.get("RESTART_BUTTON")),
 							mainMenuItem		= new JMenuItem(Lang.get("MENU_FILE_MENU")),
-							exitItem			= new JMenuItem(Lang.get("MENU_FILE_EXIT"));
+							exitItem			= new JMenuItem(Lang.get("MENU_FILE_EXIT")),
+							tutorialItem		= new JMenuItem(Lang.get("MENU_HELP_TUTORIAL")),
+							updateItem			= new JMenuItem(Lang.get("MENU_HELP_UPDATE")),
+							aboutItem			= new JMenuItem(Lang.get("MENU_HELP_ABOUT"));
 	boolean					running				= true;
 	
 	public VG_GUI_LocalAI_Easy () {
@@ -95,6 +99,16 @@ public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 			langs.setSelected(deu.getModel(), true);
 		}
 		menuBar.add(lang);
+		
+		JMenu help = new JMenu(Lang.get("MENU_HELP"));
+		tutorialItem.addActionListener(this);
+		help.add(tutorialItem);
+		updateItem.addActionListener(this);
+		help.add(updateItem);
+		help.add(new JSeparator());
+		aboutItem.addActionListener(this);
+		help.add(aboutItem);
+		menuBar.add(help);
 		setJMenuBar(menuBar);
 		
 		VG_GUI.initUI(scoreboardLabel, redScoreboard, yellowScoreboard, redScoreLabel, yellowScoreLabel, curTurn, currentPlayer, restartButton, this);
@@ -265,6 +279,23 @@ public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 			if (confirm == JOptionPane.YES_OPTION) {
 				System.exit(0);
 			}
+			
+		} else if (e.getSource() == tutorialItem) {
+			JOptionPane.showMessageDialog(
+					this,
+					Lang.get("FEATURE_UNAVAILABLE"),
+					Lang.get("TITLE"),
+					JOptionPane.ERROR_MESSAGE);
+			
+		} else if (e.getSource() == updateItem) {
+			Updater.checkForUpdate();
+			
+		} else if (e.getSource() == aboutItem) {
+			JOptionPane.showMessageDialog(
+					this,
+					Lang.get("MENU_HELP_ABOUT_TEXT"),
+					Lang.get("TITLE"),
+					JOptionPane.INFORMATION_MESSAGE);
 			
 		}
 		

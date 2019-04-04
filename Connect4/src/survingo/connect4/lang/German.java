@@ -16,6 +16,8 @@ package survingo.connect4.lang;
 import java.util.HashMap;
 import java.util.Map;
 
+import survingo.connect4.VG_Main;
+
 public class German {
 	
 	public static Map<String, String> getMap () {
@@ -33,17 +35,22 @@ public class German {
 		map.put("MENU_FILE_SAVE", "Scoreboard speichern");
 		map.put("MENU_FILE_MENU", "Zum Hauptmenü zurückkehren");
 		map.put("MENU_FILE_EXIT", "Schließen");
+		map.put("MENU_HELP", "Hilfe");
+		map.put("MENU_HELP_TUTORIAL", "Tutorial");
+		map.put("MENU_HELP_UPDATE", "Nach Aktualisierungen suchen");
+		map.put("MENU_HELP_ABOUT", "Über");
+		map.put("MENU_HELP_ABOUT_TEXT", "Vier Gewinnt v" + VG_Main.VER + " (c) 2019 Survingo\nDieses Open-Source Projekt ist in Java geschrieben worden.");
 		
 		map.put("CONFIRM_EXIT", "Sind Sie sich sicher, dass Sie das Programm schließen möchten?");
-		map.put("CONFIRM_RESTART", "Sind Sie sich sicher, dass Sie das aktuelle Spiel neustarten wollen? Der Spielfortschritt wird nicht gespeichert.");
-		map.put("CONFIRM_LEAVE", "Sind Sie sich sicher, dass Sie das Spiel verlassen wollen? Sie werden zum Hauptmenü zurückgeleitet.");
+		map.put("CONFIRM_RESTART", "Sind Sie sich sicher, dass Sie das aktuelle Spiel neustarten wollen?\nDer Spielfortschritt wird nicht gespeichert.");
+		map.put("CONFIRM_LEAVE", "Sind Sie sich sicher, dass Sie das Spiel verlassen wollen?\nSie werden zum Hauptmenü zurückgeleitet.");
 		map.put("RESTART_BUTTON", "Neustarten");
 		map.put("UPDATE_AVAILABLE", "Ein neues Update ist verfügbar! Klicke <a href=\"https://github.com/Survingo/Connect4/releases\"> hier</a>, um es herunterzuladen.");
 		
 		// Errors
-		map.put("FEATURE_UNAVAILABLE", "Diese Funktion ist leider noch nicht verfügbar! Sie können nach Aktualisierungen im offiziellen GitHub Resporitory suchen.");
-		map.put("FEATURE_NOT_COMPLETE", "Diese Funktion befindet sich noch in einen frühen Entwicklungsstadium. Sollten Ihnen Fehler unterlaufen melden Sie diese bitte im GitHub Repository unter der  \"Issues\"-Sektion.");
-		map.put("NIMBUS_LAF_ERROR", "Ein Fehler ist aufgetreten während des Festlegen des Nimbus Look and Feels. Das Programm ist optimiert für das Nimbus Look and Feel. Visuelle Fehler könnten nun auftreten. Fehlercode: ");
+		map.put("FEATURE_UNAVAILABLE", "Diese Funktion ist leider noch nicht verfügbar!\nSie können nach Aktualisierungen im offiziellen GitHub Resporitory suchen.");
+		map.put("FEATURE_NOT_COMPLETE", "Diese Funktion befindet sich noch in einen frühen Entwicklungsstadium.\nSollten Ihnen Fehler unterlaufen melden Sie diese bitte\nim GitHub Repository unter der  \"Issues\"-Sektion.");
+		map.put("NIMBUS_LAF_ERROR", "Ein Fehler ist aufgetreten während des Festlegen des Nimbus Look and Feels.\nDas Programm ist optimiert für das Nimbus Look and Feel. Visuelle Fehler könnten nun auftreten. Fehlercode: ");
 		
 		// Scoreboard
 		map.put("SB_TITLE", "Scoreboard");

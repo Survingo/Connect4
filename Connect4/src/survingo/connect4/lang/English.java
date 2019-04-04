@@ -16,6 +16,8 @@ package survingo.connect4.lang;
 import java.util.HashMap;
 import java.util.Map;
 
+import survingo.connect4.VG_Main;
+
 public class English {
 	
 	public static Map<String, String> getMap () {
@@ -33,17 +35,22 @@ public class English {
 		map.put("MENU_FILE_SAVE", "Save scoreboard");
 		map.put("MENU_FILE_MENU", "Return to Main Menu");
 		map.put("MENU_FILE_EXIT", "Exit");
+		map.put("MENU_HELP", "Help");
+		map.put("MENU_HELP_TUTORIAL", "Tutorial");
+		map.put("MENU_HELP_UPDATE", "Check for updates");
+		map.put("MENU_HELP_ABOUT", "About");
+		map.put("MENU_HELP_ABOUT_TEXT", "Connect Four v" + VG_Main.VER + " (c) 2019 Survingo\nThis open-source project was written in Java.");
 		
 		map.put("CONFIRM_EXIT", "Are you sure that you want to close the program?");
-		map.put("CONFIRM_RESTART", "Are you sure that you want to restart the current game? Game progress will not be saved.");
-		map.put("CONFIRM_LEAVE", "Are you sure that you want to leave the game? You will be redirected to the main menu.");
+		map.put("CONFIRM_RESTART", "Are you sure that you want to restart the current game?\nGame progress will not be saved.");
+		map.put("CONFIRM_LEAVE", "Are you sure that you want to leave the game?\nYou will be redirected to the main menu.");
 		map.put("RESTART_BUTTON", "Restart");
 		map.put("UPDATE_AVAILABLE", "A new update for the game is available! Click <a href=\"https://github.com/Survingo/Connect4/releases\"> here</a> to download it.");
 		
 		// Errors
-		map.put("FEATURE_UNAVAILABLE", "This feature is not available, yet! You can check for updates in the official GitHub Repository.");
-		map.put("FEATURE_NOT_COMPLETE", "This feature is still in development and not completely done. If you encounter any bugs please be sure to report them to the official GitHub Repository in the issues section.");
-		map.put("NIMBUS_LAF_ERROR", "An error occured while setting the Nimbus Look and Feel. This program is optimized for the Nimbus Look and Feel. Visiual bugs may appear now. Error code: ");
+		map.put("FEATURE_UNAVAILABLE", "This feature is not available, yet!\nYou can check for updates in the official GitHub Repository.");
+		map.put("FEATURE_NOT_COMPLETE", "This feature is still in development and not completely done.\nIf you encounter any bugs please be sure to report them to\nthe official GitHub Repository in the issues section.");
+		map.put("NIMBUS_LAF_ERROR", "An error occured while setting the Nimbus Look and Feel.\nThis program is optimized for the Nimbus Look and Feel. Visiual bugs may appear now. Error code: ");
 		
 		// Scoreboard
 		map.put("SB_TITLE", "Scoreboard");
