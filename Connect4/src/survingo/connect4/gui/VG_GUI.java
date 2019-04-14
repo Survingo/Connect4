@@ -17,9 +17,12 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -69,6 +72,23 @@ public class VG_GUI {
 		JMenu help = new JMenu(Lang.get("MENU_HELP"));
 		tutorialItem.addActionListener(listener);
 		help.add(tutorialItem);
+		help.add(new JSeparator());
+		JCheckBoxMenuItem checkUpdateStart = new JCheckBoxMenuItem(Lang.get("MENU_HELP_UPDATE_START"));
+		checkUpdateStart.addItemListener (new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					VG_Main.setProperty("update", "true");
+				} else {
+					VG_Main.setProperty("update", "false");
+				}
+			}
+		});
+		if (VG_Main.prop.getProperty("update", "true").equals("true")) {
+			checkUpdateStart.setSelected(true);
+		} else {
+			checkUpdateStart.setSelected(false);
+		}
+		help.add(checkUpdateStart);
 		updateItem.addActionListener(listener);
 		help.add(updateItem);
 		help.add(new JSeparator());

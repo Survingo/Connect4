@@ -37,7 +37,8 @@ public class English {
 		map.put("MENU_FILE_EXIT", "Exit");
 		map.put("MENU_HELP", "Help");
 		map.put("MENU_HELP_TUTORIAL", "Tutorial");
-		map.put("MENU_HELP_UPDATE", "Check for updates");
+		map.put("MENU_HELP_UPDATE_START", "Check for Updates on Start");
+		map.put("MENU_HELP_UPDATE", "Check for Updates");
 		map.put("MENU_HELP_ABOUT", "About");
 		map.put("MENU_HELP_ABOUT_TEXT", "Connect Four v" + VG_Main.VER + " (c) 2019 Survingo\nThis open-source project was written in Java.");
 		

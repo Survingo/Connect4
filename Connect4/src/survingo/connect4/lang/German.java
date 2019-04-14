@@ -37,6 +37,7 @@ public class German {
 		map.put("MENU_FILE_EXIT", "Schlieﬂen");
 		map.put("MENU_HELP", "Hilfe");
 		map.put("MENU_HELP_TUTORIAL", "Tutorial");
+		map.put("MENU_HELP_UPDATE_START", "Beim Start nach Aktualisierungen suchen");
 		map.put("MENU_HELP_UPDATE", "Nach Aktualisierungen suchen");
 		map.put("MENU_HELP_ABOUT", "‹ber");
 		map.put("MENU_HELP_ABOUT_TEXT", "Vier Gewinnt v" + VG_Main.VER + " (c) 2019 Survingo\nDieses Open-Source Projekt ist in Java geschrieben worden.");
