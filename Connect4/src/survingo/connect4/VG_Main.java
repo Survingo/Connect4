@@ -13,7 +13,6 @@ See https://github.com/Survingo/Connect4/blob/master/LICENSE for full license de
 
 package survingo.connect4;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
@@ -36,8 +35,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import survingo.connect4.gui.VG_GUI_LocalAI_Easy;
