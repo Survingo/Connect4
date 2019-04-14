@@ -13,6 +13,7 @@ See https://github.com/Survingo/Connect4/blob/master/LICENSE for full license de
 
 package survingo.connect4;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
@@ -35,6 +36,8 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import survingo.connect4.gui.VG_GUI_LocalAI_Easy;
@@ -151,6 +154,17 @@ public class VG_Main extends JFrame implements ActionListener {
 					JOptionPane.ERROR_MESSAGE);
 		}
 		
+		try {
+			Font font = new Font("Arial", Font.PLAIN, 16);
+			UIManager.getLookAndFeelDefaults().put("defaultFont", font);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(
+					null,
+					"An error occured: " + e.getClass().getSimpleName(),
+					Lang.get("TITLE"),
+					JOptionPane.ERROR_MESSAGE);
+		}
+		
 		// Initiate images
 		redIcon = setImage("utils/VG_Red.png", 90, 90);
 		yellowIcon = setImage("utils/VG_Yellow.png", 90, 90);
@@ -171,28 +185,28 @@ public class VG_Main extends JFrame implements ActionListener {
 		}
 		
 		JLabel vg = new JLabel( Lang.get("TITLE") );
-		vg.setFont(new Font("Liberation Sans", Font.PLAIN, 100));
+		vg.setFont(new Font("Arial", Font.PLAIN, 100));
 		vg.setSize ( vg.getPreferredSize().width, vg.getPreferredSize().height );
 		getContentPane().add(vg);
 		vg.setLocation(WIDTH/2-vg.getSize().width/2, new Double(HEIGHT*0.2).intValue() );
 		
-		gO.setFont(new Font("Liberation Sans", Font.PLAIN, 30));
-		gO.setSize(gO.getPreferredSize().width+10, gO.getPreferredSize().height);
+		gO.setFont(new Font("Arial", Font.PLAIN, 30));
+		gO.setSize(gO.getPreferredSize().width+10, gO.getPreferredSize().height+10);
 		gO.setSelectedIndex(0);
 		getContentPane().add(gO);
 		gO.setLocation(WIDTH/2-gO.getSize().width/2, HEIGHT/2-gO.getSize().height/2);
 		
 		JButton play = new JButton("Start");
-		play.setFont(new Font("Liberation Sans", Font.PLAIN, 30));
-		play.setSize(play.getPreferredSize().width, play.getPreferredSize().height);
+		play.setFont(new Font("Arial", Font.PLAIN, 30));
+		play.setSize(play.getPreferredSize().width+20, play.getPreferredSize().height+10);
 		play.addActionListener(this);
 		getContentPane().add(play);
 		play.setLocation(WIDTH/2-play.getSize().width/2, new Double(HEIGHT*0.6).intValue());
 		
 		JLabel versionLabel = new JLabel( "v" + VER );
-		versionLabel.setFont(new Font("Liberation Sans", Font.PLAIN, 40));
+		versionLabel.setFont(new Font("Arial", Font.PLAIN, 40));
 		versionLabel.setSize(versionLabel.getPreferredSize().width, versionLabel.getPreferredSize().height);
-		versionLabel.setLocation( WIDTH-versionLabel.getSize().width-10, new Double(HEIGHT*0.93).intValue() );
+		versionLabel.setLocation( WIDTH-versionLabel.getSize().width-15, new Double(HEIGHT*0.92).intValue() );
 		getContentPane().add(versionLabel);
 		
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
