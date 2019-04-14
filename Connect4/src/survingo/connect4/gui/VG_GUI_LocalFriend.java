@@ -67,59 +67,22 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 	public VG_GUI_LocalFriend () {
 		// initiate menu
 		JMenuBar menuBar = new JMenuBar();
-		JMenu file = new JMenu(Lang.get("MENU_FILE"));
-		saveItem.addActionListener(this);
-		file.add(saveItem);
-		restartItem.addActionListener(this);
-		file.add(restartItem);
-		file.add(new JSeparator());
-		mainMenuItem.addActionListener(this);
-		file.add(mainMenuItem);
-		exitItem.addActionListener(this);
-		file.add(exitItem);
-		menuBar.add(file);
-		
-		JMenu lang = new JMenu(Lang.get("MENU_LANGUAGE"));
-		ButtonGroup langs = new ButtonGroup();
-		
-		eng.addActionListener(this);
-		langs.add(eng);
-		lang.add(eng);
-		
-		deu.addActionListener(this);
-		langs.add(deu);
-		lang.add(deu);
-		
-		if (VG_Main.prop.getProperty("lang", "eng").equals("eng")) {
-			langs.setSelected(eng.getModel(), true);
-		} else if (VG_Main.prop.getProperty("lang").equals("deu")) {
-			langs.setSelected(deu.getModel(), true);
-		}
-		menuBar.add(lang);
-		
-		JMenu help = new JMenu(Lang.get("MENU_HELP"));
-		tutorialItem.addActionListener(this);
-		help.add(tutorialItem);
-		updateItem.addActionListener(this);
-		help.add(updateItem);
-		help.add(new JSeparator());
-		aboutItem.addActionListener(this);
-		help.add(aboutItem);
-		menuBar.add(help);
+		VG_GUI.initMenu(
+				this,
+				menuBar,
+				saveItem,
+				restartItem,
+				mainMenuItem,
+				exitItem,
+				eng,
+				deu,
+				tutorialItem,
+				updateItem,
+				aboutItem);
 		setJMenuBar(menuBar);
 		
-		
-		VG_GUI.initUI(scoreboardLabel, redScoreboard, yellowScoreboard, redScoreLabel, yellowScoreLabel, curTurn, currentPlayer, restartButton, this);
-		
-		getContentPane().add(scoreboardLabel);
-		getContentPane().add(redScoreboard);
-		getContentPane().add(yellowScoreboard);
-		getContentPane().add(redScoreLabel);
-		getContentPane().add(yellowScoreLabel);
-		getContentPane().add(curTurn);
-		getContentPane().add(currentPlayer);
-		getContentPane().add(restartButton);
-		
+		// for scoreboard
+		VG_GUI.initUI(getContentPane(), this, scoreboardLabel, redScoreboard, yellowScoreboard, redScoreLabel, yellowScoreLabel, curTurn, currentPlayer, restartButton);
 		
 		JPanel gamefield = new JPanel(); // seperate JPanel for game field
 		gamefield.setSize(700, 600);

@@ -14,12 +14,19 @@ See https://github.com/Survingo/Connect4/blob/master/LICENSE for full license de
 package survingo.connect4.gui;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JSeparator;
 
 import survingo.connect4.VG_Main;
 import survingo.connect4.lang.Lang;
@@ -27,48 +34,108 @@ import survingo.connect4.utils.VG_Button;
 
 public class VG_GUI {
 	
-	public static void initUI (JLabel sL, JLabel rSB, JLabel ySB, JLabel rSL, JLabel ySL, JLabel curT, JLabel curPl, JButton restart, ActionListener listener) {
+	static void initMenu (ActionListener listener, JMenuBar menuBar, JMenuItem saveItem, JMenuItem restartItem, JMenuItem mainMenuItem, JMenuItem exitItem, JRadioButtonMenuItem eng, JRadioButtonMenuItem deu, JMenuItem tutorialItem, JMenuItem updateItem, JMenuItem aboutItem) {
+		
+		JMenu file = new JMenu(Lang.get("MENU_FILE"));
+		saveItem.addActionListener(listener);
+		file.add(saveItem);
+		restartItem.addActionListener(listener);
+		file.add(restartItem);
+		file.add(new JSeparator());
+		mainMenuItem.addActionListener(listener);
+		file.add(mainMenuItem);
+		exitItem.addActionListener(listener);
+		file.add(exitItem);
+		menuBar.add(file);
+		
+		JMenu lang = new JMenu(Lang.get("MENU_LANGUAGE"));
+		ButtonGroup langs = new ButtonGroup();
+		
+		eng.addActionListener(listener);
+		langs.add(eng);
+		lang.add(eng);
+		
+		deu.addActionListener(listener);
+		langs.add(deu);
+		lang.add(deu);
+		
+		if (VG_Main.prop.getProperty("lang", "eng").equals("eng")) {
+			langs.setSelected(eng.getModel(), true);
+		} else if (VG_Main.prop.getProperty("lang").equals("deu")) {
+			langs.setSelected(deu.getModel(), true);
+		}
+		menuBar.add(lang);
+		
+		JMenu help = new JMenu(Lang.get("MENU_HELP"));
+		tutorialItem.addActionListener(listener);
+		help.add(tutorialItem);
+		updateItem.addActionListener(listener);
+		help.add(updateItem);
+		help.add(new JSeparator());
+		aboutItem.addActionListener(listener);
+		help.add(aboutItem);
+		menuBar.add(help);
+	}
+	
+	public static void initUI (Container con, ActionListener listener, JLabel sL, JLabel rSB, JLabel ySB, JLabel rSL, JLabel ySL, JLabel curT, JLabel curPl, JButton restart) {
+		// scoreboard text label
 		sL.setFont(new Font("Arial", Font.PLAIN, 45));
 		sL.setForeground(Color.GRAY.darker());
 		sL.setText( Lang.get("SB_TITLE") );
 		sL.setSize( sL.getPreferredSize().width, sL.getPreferredSize().height );
 		sL.setLocation(750, 25);
 		
+		// score text label for red player
 		rSB.setFont(new Font("Arial", Font.PLAIN, 16));
 		rSB.setForeground(Color.GRAY.darker());
 		rSB.setText( Lang.get("SB_SCORE_RED") );
 		rSB.setSize( rSB.getPreferredSize().width, rSB.getPreferredSize().height );
 		rSB.setLocation(750, 90);
 		
+		// score text label for yellow player
 		ySB.setFont(new Font("Arial", Font.PLAIN, 16));
 		ySB.setForeground(Color.GRAY.darker());
 		ySB.setText( Lang.get("SB_SCORE_YELLOW") );
 		ySB.setSize( ySB.getPreferredSize().width, ySB.getPreferredSize().height );
 		ySB.setLocation(750, 140);
 		
+		// score label for red player
 		rSL.setFont(new Font("Arial", Font.PLAIN, 16));
 		rSL.setForeground(Color.GRAY.darker());
 		rSL.setSize( rSL.getPreferredSize().width, rSL.getPreferredSize().height );
 		rSL.setLocation(1000, 90);
 		
+		// score label for yellow player
 		ySL.setFont(new Font("Arial", Font.PLAIN, 16));
 		ySL.setForeground(Color.GRAY.darker());
 		ySL.setSize ( ySL.getPreferredSize().width, ySL.getPreferredSize().height );
 		ySL.setLocation(1000, 140);
 		
+		// "Current Turn:" label
 		curT.setFont(new Font("Arial", Font.PLAIN, 45));
 		curT.setForeground(Color.GRAY.darker());
 		curT.setSize ( curT.getPreferredSize().width, curT.getPreferredSize().height );
 		curT.setLocation(750, 240);
 		
+		// Current player label in scoreboard
 		curPl.setFont(new Font("Arial", Font.PLAIN, 45));
-		curPl.setForeground(new Color(209, 73, 73));
+		curPl.setForeground(new Color(209, 73, 73)); // red
 		curPl.setSize ( curPl.getPreferredSize().width, curPl.getPreferredSize().height );
 		curPl.setLocation(750, 290);
 		
+		// Restart button
 		restart.setLocation(850, 400);
 		restart.setSize(100, 30);
 		restart.addActionListener(listener);
+		
+		con.add(sL);
+		con.add(rSB);
+		con.add(ySB);
+		con.add(rSL);
+		con.add(ySL);
+		con.add(curT);
+		con.add(curPl);
+		con.add(restart);
 	}
 	
 	public static void initButton (JPanel panel, ActionListener listener, VG_Button button, int y) {

@@ -44,7 +44,7 @@ import survingo.connect4.utils.Updater;
 
 public class VG_Main extends JFrame implements ActionListener {
 	
-	public static final String	VER 			= "0.2.0";
+	public static final String	VER 			= "0.3.0-beta";
 	public static int			WIDTH			= 1100;
 	public static int			HEIGHT			= 650;
 	public static ImageIcon		redIcon, yellowIcon;
