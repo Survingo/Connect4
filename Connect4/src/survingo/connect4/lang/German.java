@@ -46,6 +46,7 @@ public class German {
 		map.put("CONFIRM_LEAVE", "Sind Sie sich sicher, dass Sie das Spiel verlassen wollen?\nSie werden zum Hauptmenü zurückgeleitet.");
 		map.put("RESTART_BUTTON", "Neustarten");
 		map.put("UPDATE_AVAILABLE", "Ein neues Update ist verfügbar! Klicke <a href=\"https://github.com/Survingo/Connect4/releases\"> hier</a>, um es herunterzuladen.");
+		map.put("UP_TO_DATE", "Das Programm ist aktuell! Keine neue Aktualisierung ist verfügbar.");
 		
 		// Errors
 		map.put("FEATURE_UNAVAILABLE", "Diese Funktion ist leider noch nicht verfügbar!\nSie können nach Aktualisierungen im offiziellen GitHub Resporitory suchen.");

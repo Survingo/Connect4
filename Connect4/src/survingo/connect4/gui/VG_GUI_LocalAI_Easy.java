@@ -253,7 +253,13 @@ public class VG_GUI_LocalAI_Easy extends JFrame implements ActionListener {
 					JOptionPane.ERROR_MESSAGE);
 			
 		} else if (e.getSource() == updateItem) {
-			Updater.checkForUpdate();
+			if (Updater.isUpToDate()) {
+				JOptionPane.showMessageDialog(
+						this,
+						Lang.get("UP_TO_DATE"),
+						Lang.get("TITLE"),
+						JOptionPane.INFORMATION_MESSAGE);
+			}
 			
 		} else if (e.getSource() == aboutItem) {
 			JOptionPane.showMessageDialog(

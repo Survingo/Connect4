@@ -32,7 +32,7 @@ import survingo.connect4.lang.Lang;
 
 public class Updater {
 	
-	public static void checkForUpdate () {
+	public static boolean isUpToDate () {
 		String version = null;
 		try { // get newest version code of game
 			URL url = new URL("https://raw.githubusercontent.com/Survingo/Connect4/master/version");
@@ -42,7 +42,7 @@ public class Updater {
 			version = scanner.next();
 			scanner.close();
 		} catch ( Exception e) {
-			return;
+			return true;
 		}
 		
 		if (!version.equals(VG_Main.VER)) {
@@ -74,7 +74,11 @@ public class Updater {
 					editorpane,
 					Lang.get("TITLE"),
 					JOptionPane.INFORMATION_MESSAGE);
+			return false;
+		} else {
+			return true;
 		}
+		
 	}
 	
 }

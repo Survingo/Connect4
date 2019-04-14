@@ -158,7 +158,7 @@ public class VG_Main extends JFrame implements ActionListener {
 		mainFrame = new VG_Main();
 		
 		if (prop.getProperty("update", "true").equals("true")) {
-			Updater.checkForUpdate();
+			Updater.isUpToDate();
 		}
 	}
 	
