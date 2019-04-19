@@ -97,8 +97,9 @@ public class VG_GUI {
 		menuBar.add(help);
 	}
 	
-	public static void initUI (Container con, ActionListener listener, JLabel sL, JLabel rSB, JLabel ySB, JLabel rSL, JLabel ySL, JLabel curT, JLabel curPl, JButton restart) {
+	public static void initUI (Container con, ActionListener listener, JLabel rSL, JLabel ySL, JLabel curPl, JButton restart) {
 		// scoreboard text label
+		JLabel sL = new JLabel(Lang.get("SB_TITLE"));
 		sL.setFont(new Font("Arial", Font.PLAIN, 45));
 		sL.setForeground(Color.GRAY.darker());
 		sL.setText( Lang.get("SB_TITLE") );
@@ -106,16 +107,16 @@ public class VG_GUI {
 		sL.setLocation(750, 25);
 		
 		// score text label for red player
+		JLabel rSB	= new JLabel(Lang.get("SB_SCORE_RED"));
 		rSB.setFont(new Font("Arial", Font.PLAIN, 16));
 		rSB.setForeground(Color.GRAY.darker());
-		rSB.setText( Lang.get("SB_SCORE_RED") );
 		rSB.setSize( rSB.getPreferredSize().width, rSB.getPreferredSize().height );
 		rSB.setLocation(750, 90);
 		
 		// score text label for yellow player
+		JLabel ySB = new JLabel(Lang.get("SB_SCORE_YELLOW"));
 		ySB.setFont(new Font("Arial", Font.PLAIN, 16));
 		ySB.setForeground(Color.GRAY.darker());
-		ySB.setText( Lang.get("SB_SCORE_YELLOW") );
 		ySB.setSize( ySB.getPreferredSize().width, ySB.getPreferredSize().height );
 		ySB.setLocation(750, 140);
 		
@@ -132,6 +133,7 @@ public class VG_GUI {
 		ySL.setLocation(1000, 140);
 		
 		// "Current Turn:" label
+		JLabel curT = new JLabel(Lang.get("SB_CURTURN"));
 		curT.setFont(new Font("Arial", Font.PLAIN, 45));
 		curT.setForeground(Color.GRAY.darker());
 		curT.setSize ( curT.getPreferredSize().width, curT.getPreferredSize().height );

@@ -46,13 +46,9 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 							redScore 			= 0, // score counter
 							yellowScore			= 0;
 	JButton					restartButton		= new JButton(Lang.get("RESTART_BUTTON"));
-	JLabel					curTurn				= new JLabel(Lang.get("SB_CURTURN")),
-							currentPlayer		= new JLabel(Lang.get("SB_CURTURN_P1")),
+	JLabel					currentPlayer		= new JLabel(Lang.get("SB_CURTURN_P1")),
 							redScoreLabel 		= new JLabel("0"),
-							yellowScoreLabel	= new JLabel("0"),
-							scoreboardLabel		= new JLabel(),
-							redScoreboard		= new JLabel(),
-							yellowScoreboard	= new JLabel();
+							yellowScoreLabel	= new JLabel("0");
 	VG_Button[][]			sf					= new VG_Button [6] [7]; // create game field using multidimensional array = 6 rows (y-axis) / 7 columns (x-axis)
 	JRadioButtonMenuItem	eng					= new JRadioButtonMenuItem("English"),
 							deu					= new JRadioButtonMenuItem("Deutsch");
@@ -83,7 +79,7 @@ public class VG_GUI_LocalFriend extends JFrame implements ActionListener {
 		setJMenuBar(menuBar);
 		
 		// for scoreboard
-		VG_GUI.initUI(getContentPane(), this, scoreboardLabel, redScoreboard, yellowScoreboard, redScoreLabel, yellowScoreLabel, curTurn, currentPlayer, restartButton);
+		VG_GUI.initUI(getContentPane(), this, redScoreLabel, yellowScoreLabel, currentPlayer, restartButton);
 		
 		JPanel gamefield = new JPanel(); // seperate JPanel for game field
 		gamefield.setSize(700, 600);
