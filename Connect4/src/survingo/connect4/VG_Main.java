@@ -185,7 +185,7 @@ public class VG_Main extends JFrame implements ActionListener {
 		vg.setFont(new Font("Arial", Font.PLAIN, 100));
 		vg.setSize ( vg.getPreferredSize().width, vg.getPreferredSize().height );
 		getContentPane().add(vg);
-		vg.setLocation(WIDTH/2-vg.getSize().width/2, new Double(HEIGHT*0.2).intValue() );
+		vg.setLocation(WIDTH/2-vg.getSize().width/2, (int)(HEIGHT*0.2) );
 		
 		gO.setFont(new Font("Arial", Font.PLAIN, 30));
 		gO.setSize(gO.getPreferredSize().width+10, gO.getPreferredSize().height+10);
@@ -198,12 +198,12 @@ public class VG_Main extends JFrame implements ActionListener {
 		play.setSize(play.getPreferredSize().width+20, play.getPreferredSize().height+10);
 		play.addActionListener(this);
 		getContentPane().add(play);
-		play.setLocation(WIDTH/2-play.getSize().width/2, new Double(HEIGHT*0.6).intValue());
+		play.setLocation(WIDTH/2-play.getSize().width/2, (int)(HEIGHT*0.6) );
 		
 		JLabel versionLabel = new JLabel( "v" + VER );
 		versionLabel.setFont(new Font("Arial", Font.PLAIN, 40));
 		versionLabel.setSize(versionLabel.getPreferredSize().width, versionLabel.getPreferredSize().height);
-		versionLabel.setLocation( WIDTH-versionLabel.getSize().width-15, new Double(HEIGHT*0.92).intValue() );
+		versionLabel.setLocation( WIDTH-versionLabel.getSize().width-15, (int)(HEIGHT*0.92) );
 		getContentPane().add(versionLabel);
 		
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
