@@ -29,7 +29,9 @@ public class English {
 		map.put("TITLE_AI_EASY", "Player vs. AI - Easy");
 		map.put("TITLE_AI_HARD", "Player vs. AI - Hard");
 		
-		map.put("MENU_LANGUAGE", "Language");
+		map.put("MENU_SETTINGS", "Settings");
+		map.put("MENU_SETTINGS_LANGUAGE", "Language");
+		map.put("MENU_SETTINGS_DARKMODE", "Dark Mode");
 		map.put("MENU_LANG_CHANGED", "In order to change the language you will have to restart the program.");
 		map.put("MENU_FILE", "File");
 		map.put("MENU_FILE_SAVE", "Save scoreboard");
@@ -37,7 +39,6 @@ public class English {
 		map.put("MENU_FILE_EXIT", "Exit");
 		map.put("MENU_HELP", "Help");
 		map.put("MENU_HELP_TUTORIAL", "Tutorial");
-		map.put("MENU_HELP_DARKMODE", "Dark Mode");
 		map.put("MENU_HELP_UPDATE_START", "Check for Updates on Start");
 		map.put("MENU_HELP_UPDATE", "Check for Updates");
 		map.put("MENU_HELP_ABOUT", "About");

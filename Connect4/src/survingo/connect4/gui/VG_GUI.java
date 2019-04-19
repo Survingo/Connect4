@@ -21,6 +21,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JLabel;
@@ -66,6 +67,7 @@ public class VG_GUI {
 	
 	static void initMenu (ActionListener listener, JMenuBar menuBar, JMenuItem saveItem, JMenuItem restartItem, JMenuItem mainMenuItem, JMenuItem exitItem, JRadioButtonMenuItem eng, JRadioButtonMenuItem deu, JMenuItem tutorialItem, JMenuItem updateItem, JMenuItem aboutItem) {
 		
+		// File menu
 		JMenu file = new JMenu(Lang.get("MENU_FILE"));
 		saveItem.addActionListener(listener);
 		file.add(saveItem);
@@ -78,7 +80,10 @@ public class VG_GUI {
 		file.add(exitItem);
 		menuBar.add(file);
 		
-		JMenu lang = new JMenu(Lang.get("MENU_LANGUAGE"));
+		// Settings menu
+		JMenu settings = new JMenu(Lang.get("MENU_SETTINGS"));
+		// Language sub-menu
+		JMenu lang = new JMenu(Lang.get("MENU_SETTINGS_LANGUAGE"));
 		ButtonGroup langs = new ButtonGroup();
 		
 		eng.addActionListener(listener);
@@ -94,13 +99,9 @@ public class VG_GUI {
 		} else if (VG_Main.prop.getProperty("lang").equals("deu")) {
 			langs.setSelected(deu.getModel(), true);
 		}
-		menuBar.add(lang);
-		
-		JMenu help = new JMenu(Lang.get("MENU_HELP"));
-		tutorialItem.addActionListener(listener);
-		help.add(tutorialItem);
-		help.add(new JSeparator());
-		JCheckBoxMenuItem darkMode = new JCheckBoxMenuItem(Lang.get("MENU_HELP_DARKMODE"));
+		settings.add(lang);
+		settings.add(new JSeparator());
+		JCheckBoxMenuItem darkMode = new JCheckBoxMenuItem(Lang.get("MENU_SETTINGS_DARKMODE"));
 		darkMode.addItemListener (new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -115,7 +116,13 @@ public class VG_GUI {
 		} else {
 			darkMode.setSelected(false);
 		}
-		help.add(darkMode);
+		settings.add(darkMode);
+		menuBar.add(settings);
+		
+		// Help menu
+		JMenu help = new JMenu(Lang.get("MENU_HELP"));
+		tutorialItem.addActionListener(listener);
+		help.add(tutorialItem);
 		help.add(new JSeparator());
 		JCheckBoxMenuItem checkUpdateStart = new JCheckBoxMenuItem(Lang.get("MENU_HELP_UPDATE_START"));
 		checkUpdateStart.addItemListener (new ItemListener() {

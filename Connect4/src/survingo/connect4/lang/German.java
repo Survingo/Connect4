@@ -29,7 +29,9 @@ public class German {
 		map.put("TITLE_AI_EASY", "Spieler gegen KI - Einfach");
 		map.put("TITLE_AI_HARD", "Spieler gegen KI - Schwer");
 		
-		map.put("MENU_LANGUAGE", "Sprache");
+		map.put("MENU_SETTINGS", "Einstellungen");
+		map.put("MENU_SETTINGS_LANGUAGE", "Sprache");
+		map.put("MENU_SETTINGS_DARKMODE", "Nachtmodus");
 		map.put("MENU_LANG_CHANGED", "Um die Änderung der Sprache zu übernehmen müssen Sie das Programm neustarten.");
 		map.put("MENU_FILE", "Datei");
 		map.put("MENU_FILE_SAVE", "Scoreboard speichern");
@@ -37,7 +39,6 @@ public class German {
 		map.put("MENU_FILE_EXIT", "Schließen");
 		map.put("MENU_HELP", "Hilfe");
 		map.put("MENU_HELP_TUTORIAL", "Tutorial");
-		map.put("MENU_HELP_DARKMODE", "Nachtmodus");
 		map.put("MENU_HELP_UPDATE_START", "Beim Start nach Aktualisierungen suchen");
 		map.put("MENU_HELP_UPDATE", "Nach Aktualisierungen suchen");
 		map.put("MENU_HELP_ABOUT", "Über");
