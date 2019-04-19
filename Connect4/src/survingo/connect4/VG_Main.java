@@ -13,6 +13,7 @@ See https://github.com/Survingo/Connect4/blob/master/LICENSE for full license de
 
 package survingo.connect4;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
@@ -37,6 +38,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import survingo.connect4.gui.VG_GUI;
 import survingo.connect4.gui.VG_GUI_LocalAI_Easy;
 import survingo.connect4.gui.VG_GUI_LocalFriend;
 import survingo.connect4.lang.Lang;
@@ -92,6 +94,9 @@ public class VG_Main extends JFrame implements ActionListener {
 			out.println("#Check for an update at program start (true/false)");
 			out.println("#This could slow down the start of the program");
 			out.println("update=true");
+			out.println("");
+			out.println("#Enable dark mode (true/false");
+			out.println("darkmode=false");
 			out.close();
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
@@ -150,6 +155,8 @@ public class VG_Main extends JFrame implements ActionListener {
 					Lang.get("TITLE"),
 					JOptionPane.ERROR_MESSAGE);
 		}
+		
+		VG_GUI.setDefaults(); // enable/disable dark mode
 		
 		try {
 			Font font = new Font("Arial", Font.PLAIN, 16);

@@ -30,12 +30,39 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSeparator;
+import javax.swing.UIManager;
 
 import survingo.connect4.VG_Main;
 import survingo.connect4.lang.Lang;
 import survingo.connect4.utils.VG_Button;
 
 public class VG_GUI {
+	
+	public static void setDefaults () {
+		if (VG_Main.prop.getProperty("darkmode", "false").equals("true")) {
+			// Dark Mode
+			UIManager.put("control", new Color(31, 31, 31));
+			UIManager.put("nimbusBase", new Color(11, 11, 11));
+			UIManager.put("nimbusDisabledText", new Color(128, 128, 128));
+			UIManager.put("nimbusFocus", new Color(94, 94, 94));
+			UIManager.put("nimbusLightBackground", new Color(32, 34, 35));
+			UIManager.put("nimbusSelectedText", new Color(255, 255, 255));
+			UIManager.put("nimbusSelectionBackground", new Color(80, 80, 80));
+			UIManager.put("text", new Color(230, 230, 230));
+			
+		} else {
+			// Light Mode
+			UIManager.put("control", new Color(236, 236, 226));
+			UIManager.put("nimbusBase", new Color(147, 139, 139));
+			UIManager.put("nimbusDisabledText", new Color(128, 128, 128));
+			UIManager.put("nimbusFocus", new Color(154, 161, 168));
+			UIManager.put("nimbusLightBackground", new Color(222, 222, 222));
+			UIManager.put("nimbusSelectedText", new Color(60, 60, 60));
+			UIManager.put("nimbusSelectionBackground", new Color(255, 255, 255));
+			UIManager.put("text", new Color(40, 40, 40));
+			
+		}
+	}
 	
 	static void initMenu (ActionListener listener, JMenuBar menuBar, JMenuItem saveItem, JMenuItem restartItem, JMenuItem mainMenuItem, JMenuItem exitItem, JRadioButtonMenuItem eng, JRadioButtonMenuItem deu, JMenuItem tutorialItem, JMenuItem updateItem, JMenuItem aboutItem) {
 		
@@ -73,6 +100,23 @@ public class VG_GUI {
 		tutorialItem.addActionListener(listener);
 		help.add(tutorialItem);
 		help.add(new JSeparator());
+		JCheckBoxMenuItem darkMode = new JCheckBoxMenuItem(Lang.get("MENU_HELP_DARKMODE"));
+		darkMode.addItemListener (new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange() == ItemEvent.SELECTED) {
+					VG_Main.setProperty("darkmode", "true");
+				} else {
+					VG_Main.setProperty("darkmode", "false");
+				}
+			}
+		});
+		if (VG_Main.prop.getProperty("darkmode", "true").equals("true")) {
+			darkMode.setSelected(true);
+		} else {
+			darkMode.setSelected(false);
+		}
+		help.add(darkMode);
+		help.add(new JSeparator());
 		JCheckBoxMenuItem checkUpdateStart = new JCheckBoxMenuItem(Lang.get("MENU_HELP_UPDATE_START"));
 		checkUpdateStart.addItemListener (new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
@@ -101,7 +145,6 @@ public class VG_GUI {
 		// scoreboard text label
 		JLabel sL = new JLabel(Lang.get("SB_TITLE"));
 		sL.setFont(new Font("Arial", Font.PLAIN, 45));
-		sL.setForeground(Color.GRAY.darker());
 		sL.setText( Lang.get("SB_TITLE") );
 		sL.setSize( sL.getPreferredSize().width, sL.getPreferredSize().height );
 		sL.setLocation(750, 25);
@@ -109,33 +152,28 @@ public class VG_GUI {
 		// score text label for red player
 		JLabel rSB	= new JLabel(Lang.get("SB_SCORE_RED"));
 		rSB.setFont(new Font("Arial", Font.PLAIN, 16));
-		rSB.setForeground(Color.GRAY.darker());
 		rSB.setSize( rSB.getPreferredSize().width, rSB.getPreferredSize().height );
 		rSB.setLocation(750, 90);
 		
 		// score text label for yellow player
 		JLabel ySB = new JLabel(Lang.get("SB_SCORE_YELLOW"));
 		ySB.setFont(new Font("Arial", Font.PLAIN, 16));
-		ySB.setForeground(Color.GRAY.darker());
 		ySB.setSize( ySB.getPreferredSize().width, ySB.getPreferredSize().height );
 		ySB.setLocation(750, 140);
 		
 		// score label for red player
 		rSL.setFont(new Font("Arial", Font.PLAIN, 16));
-		rSL.setForeground(Color.GRAY.darker());
 		rSL.setSize( rSL.getPreferredSize().width, rSL.getPreferredSize().height );
 		rSL.setLocation(1000, 90);
 		
 		// score label for yellow player
 		ySL.setFont(new Font("Arial", Font.PLAIN, 16));
-		ySL.setForeground(Color.GRAY.darker());
 		ySL.setSize ( ySL.getPreferredSize().width, ySL.getPreferredSize().height );
 		ySL.setLocation(1000, 140);
 		
 		// "Current Turn:" label
 		JLabel curT = new JLabel(Lang.get("SB_CURTURN"));
 		curT.setFont(new Font("Arial", Font.PLAIN, 45));
-		curT.setForeground(Color.GRAY.darker());
 		curT.setSize ( curT.getPreferredSize().width, curT.getPreferredSize().height );
 		curT.setLocation(750, 240);
 		
@@ -148,6 +186,7 @@ public class VG_GUI {
 		// Restart button
 		restart.setLocation(850, 400);
 		restart.setSize(100, 30);
+		restart.setFocusable(false);
 		restart.addActionListener(listener);
 		
 		con.add(sL);

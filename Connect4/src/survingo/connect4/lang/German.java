@@ -37,6 +37,7 @@ public class German {
 		map.put("MENU_FILE_EXIT", "Schlieﬂen");
 		map.put("MENU_HELP", "Hilfe");
 		map.put("MENU_HELP_TUTORIAL", "Tutorial");
+		map.put("MENU_HELP_DARKMODE", "Nachtmodus");
 		map.put("MENU_HELP_UPDATE_START", "Beim Start nach Aktualisierungen suchen");
 		map.put("MENU_HELP_UPDATE", "Nach Aktualisierungen suchen");
 		map.put("MENU_HELP_ABOUT", "‹ber");

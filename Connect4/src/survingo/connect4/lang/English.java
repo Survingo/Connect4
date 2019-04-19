@@ -37,6 +37,7 @@ public class English {
 		map.put("MENU_FILE_EXIT", "Exit");
 		map.put("MENU_HELP", "Help");
 		map.put("MENU_HELP_TUTORIAL", "Tutorial");
+		map.put("MENU_HELP_DARKMODE", "Dark Mode");
 		map.put("MENU_HELP_UPDATE_START", "Check for Updates on Start");
 		map.put("MENU_HELP_UPDATE", "Check for Updates");
 		map.put("MENU_HELP_ABOUT", "About");
