@@ -44,7 +44,7 @@ public class English {
 		map.put("MENU_HELP_ABOUT_TEXT", "Connect Four v" + VG_Main.VER + " (c) 2019 Survingo\nThis open-source project was written in Java.");
 		
 		map.put("CONFIRM_EXIT", "Are you sure that you want to close the program?");
-		map.put("CONFIRM_RESTART", "Are you sure that you want to restart the current game?\nGame progress will not be saved.");
+		map.put("CONFIRM_RESTART", "Are you sure that you want to restart the current game?\nCurrent game progress will not be saved.");
 		map.put("CONFIRM_LEAVE", "Are you sure that you want to leave the game?\nYou will be redirected to the main menu.");
 		map.put("RESTART_BUTTON", "Restart");
 		map.put("UPDATE_AVAILABLE", "A new update for the game is available! Click <a href=\"https://github.com/Survingo/Connect4/releases\"> here</a> to download it.");
