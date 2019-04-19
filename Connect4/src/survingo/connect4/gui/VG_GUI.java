@@ -185,7 +185,7 @@ public class VG_GUI {
 		
 		// Restart button
 		restart.setLocation(850, 400);
-		restart.setSize(100, 30);
+		restart.setSize(restart.getPreferredSize().width+10, restart.getPreferredSize().height+10);
 		restart.setFocusable(false);
 		restart.addActionListener(listener);
 		
